@@ -1,5 +1,5 @@
 function Home() {
-  return <h1>O LOBO MAL</h1>;
+  return <h1>O começo</h1>;
 }
 
 export default Home;
