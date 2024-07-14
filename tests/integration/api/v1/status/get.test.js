@@ -15,12 +15,12 @@ test("GET to /api/v1/status should return 200", async () => {
   expect(responseBody.dependecies.database.opened_connections).toEqual(1);
 });
 
-test.skip("Teste de SQL injection", async () => {
-  // await fetch("http://localhost:3000/api/v1/status?databaseName=local_db");
-  // await fetch("http://localhost:3000/api/v1/status?databaseName=");
-  // await fetch("http://localhost:3000/api/v1/status?databaseName=';");
-  // await fetch("http://localhost:3000/api/v1/status?databaseName='; SELECT pg_sleep(4);");
-  await fetch(
-    "http://localhost:3000/api/v1/status?databaseName='; SELECT pg_sleep(4); --",
-  );
-});
+// test.skip("Teste de SQL injection", async () => {
+//   // await fetch("http://localhost:3000/api/v1/status?databaseName=local_db");
+//   // await fetch("http://localhost:3000/api/v1/status?databaseName=");
+//   // await fetch("http://localhost:3000/api/v1/status?databaseName=';");
+//   // await fetch("http://localhost:3000/api/v1/status?databaseName='; SELECT pg_sleep(4);");
+//   await fetch(
+//     "http://localhost:3000/api/v1/status?databaseName='; SELECT pg_sleep(4); --",
+//   );
+// });
