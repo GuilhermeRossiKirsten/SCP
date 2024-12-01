@@ -32,7 +32,6 @@ async function status(resquest, response) {
       },
     },
   });
-  
 }
 
 export default status;
