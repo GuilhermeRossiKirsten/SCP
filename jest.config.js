@@ -1,5 +1,6 @@
 const nextJest = require("next/jest");
-//const dotenv = require("dotenv").config({ path: ".env.development" });
+// eslint-disable-next-line no-unused-vars
+const dotenv = require("dotenv").config({ path: ".env.development" });
 
 const createJestConfig = nextJest({ dir: "." });
 const jestConfig = createJestConfig({
