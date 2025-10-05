@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Award, ExternalLink, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Award, ExternalLink, ChevronDown, X } from "lucide-react";
 import { useState } from "react";
 
 const certifications = [
@@ -10,174 +10,204 @@ const certifications = [
     institution: "Alura",
     category: "Programação",
     date: "mai de 2025",
-    credential: "c0d7df2c-5836-4005-85b2-d1f4934688d6",
+    skills: ["Golang", "APIs", "Desempenho", "Concorrência", "Backend"],
   },
   {
     title: "Cloud Fundamentals, Administration and Solution Architect",
     institution: "FIAP",
     category: "Cloud Computing",
     date: "mar de 2025",
-    credential: "b94f48aaf8c71fcb3a09f1e09be6a1a0",
-    skills: ["Docker", "Kubernetes", "Azure"],
+    skills: [
+      "Docker",
+      "Kubernetes",
+      "Azure",
+      "Cloud",
+      "AWS",
+      "GCP",
+      "DevOps",
+      "Arquitetura em Nuvem",
+    ],
   },
   {
     title: "Curso de Domain Driven Design",
     institution: "Full Cycle",
     category: "Arquitetura",
     date: "fev de 2025",
-    credential: "80807ee3-b904-45bd-97f4-5aabceb93eb0",
+    skills: ["Typescript", "DDD", "Design Patterns", "Arquitetura de Software"],
   },
   {
     title: "Curso de Fundamentos da arquitetura de software",
     institution: "Full Cycle",
     category: "Arquitetura",
     date: "fev de 2025",
-    credential: "38d1874f-8d4a-437a-88f0-ffacaa7ddd5d",
+    skills: ["Typescript", "Arquitetura", "Design Patterns", "Boas práticas"],
   },
   {
     title: "Curso de SOLID Express",
     institution: "Full Cycle",
     category: "Arquitetura",
     date: "fev de 2025",
-    credential: "dc223ca6-0e39-4256-a9e1-06097ed8dd70",
+    skills: ["Typescript", "SOLID", "Boas práticas", "Clean Code"],
   },
   {
     title: "Front End",
     institution: "FIAP",
     category: "Programação",
     date: "out de 2024",
-    credential: "c9baf3dba0c39c0a056138b98861c0f1",
-    skills: ["HTML5", "CSS", "JavaScript", "TypeScript", "Bootstrap", "Git"],
+    skills: [
+      "HTML5",
+      "CSS",
+      "JavaScript",
+      "TypeScript",
+      "Bootstrap",
+      "Git",
+      "Frontend",
+      "UI",
+      "UX",
+    ],
   },
   {
     title: "Códigos de Alta Performance",
     institution: "FIAP",
     category: "Programação",
     date: "jun de 2024",
-    credential: "ee8af00273cab61441b140d09779fa3e",
+    skills: [
+      "Estrutura de dados",
+      "Algoritmos",
+      "Complexidade de tempo",
+      "Otimização",
+    ],
   },
   {
     title: "Trilha Digital | Coders 24 | Back End",
     institution: "Ada",
     category: "Programação",
     date: "jun de 2024",
-    credential: "25043df1-f654-a145-fc88-da58ea25be08",
-    skills: ["Java", "POO", "Design Patterns", "SQL", "Algoritmos"],
+    skills: ["Java", "POO", "Design Patterns", "SQL", "Algoritmos", "Backend"],
   },
   {
     title: "C++: Conhecendo a linguagem e a STL",
     institution: "Alura",
     category: "Programação",
     date: "fev de 2024",
-    credential: "e0bd4b60-5cf6-4d8a-8960-da98da757562",
+    skills: [
+      "C++",
+      "Algoritmos",
+      "Estrutura de dados",
+      "STL",
+      "Programação de baixo nível",
+    ],
   },
   {
     title: "Descubra a Inteligência Artificial Generativa",
     institution: "LinkedIn",
     category: "IA",
     date: "fev de 2024",
+    skills: [
+      "IA",
+      "Machine Learning",
+      "Modelos Generativos",
+      "ChatGPT",
+      "Prompt Engineering",
+    ],
   },
   {
     title: "NLW Expert trilha de Java",
     institution: "Rocketseat",
     category: "Programação",
     date: "fev de 2024",
-    credential: "639b9be1-d05c-45c9-ae5d-8d2dba55ca1f",
-    skills: ["Java"],
+    skills: ["Java", "APIs REST", "Spring Boot", "POO"],
   },
   {
     title: "Docker: criando e gerenciando containers",
     institution: "Alura",
     category: "DevOps",
     date: "jan de 2024",
-    credential: "bbd9de09-c24a-46a7-a21c-f2d4a3d89a20",
+    skills: ["Docker", "Containers", "DevOps", "Infraestrutura como Código"],
   },
   {
     title: "Kubernetes: Pods, Services e ConfigMaps",
     institution: "Alura",
     category: "DevOps",
     date: "jan de 2024",
-    credential: "0e7c30a3-8445-462a-b706-b7d6aeed6c36",
+    skills: ["Docker", "Kubernetes", "Cluster", "Orquestração", "Deploy"],
   },
   {
     title: "Curso de Java",
     institution: "Rocketseat",
     category: "Programação",
     date: "out de 2023",
-    credential: "45dd803f-867f-4429-b103-23a5a52b983c",
-    skills: ["Java"],
+    skills: ["Java", "POO", "APIs", "Spring"],
   },
   {
     title: "Java Development",
     institution: "FIAP",
     category: "Programação",
     date: "set de 2023",
-    credential: "a7474167931de5a10a6767e35da2e331",
-    skills: ["Java"],
+    skills: ["Java", "Spring Boot", "APIs REST"],
   },
   {
     title: "Java Xpert",
     institution: "FIAP",
     category: "Programação",
     date: "set de 2023",
-    credential: "54D78348-91A1-4C77-8725-07DF52D7FE51",
-    skills: ["Java", "Spring Boot", "Oracle", "Azure DevOps"],
+    skills: ["Java", "Spring Boot", "Oracle", "Azure DevOps", "SQL"],
   },
   {
     title: "C#: criando sua primeira aplicação",
     institution: "Alura",
     category: "Programação",
     date: "ago de 2023",
-    credential: "33a7a8f2-9dea-4eb8-8197-403b3f27d844",
+    skills: ["C#", ".NET", "POO"],
   },
   {
     title: "Certificação Linux LPI Essentials parte 3: Command Line Basics",
     institution: "Alura",
     category: "Linux",
     date: "jul de 2023",
-    credential: "54988775-52d5-4f9b-a487-6ece591a7c93",
+    skills: ["Linux", "Shell Script", "Bash", "CLI"],
   },
   {
     title: "Git e GitHub: repositório, commit e versões",
     institution: "Alura",
     category: "DevOps",
     date: "jul de 2023",
-    credential: "101521a2-995b-47f2-8d8e-842d07d97129",
+    skills: ["Git", "Github", "Gitlab", "Controle de versão", "Colaboração"],
   },
   {
     title: "Certificação Linux LPI Essentials parte 2: Open Source Software",
     institution: "Alura",
     category: "Linux",
     date: "jun de 2023",
-    credential: "c5d15db0-931e-441d-b25b-3935d04dccf5",
+    skills: ["Linux", "Open Source", "Pacotes", "Sistema de arquivos"],
   },
   {
     title: "DevOps",
     institution: "FIAP",
     category: "DevOps",
     date: "jun de 2023",
-    credential: "467234a44b4c74f50b84d79d9f5095be",
+    skills: ["DevOps", "Integração Contínua", "Entrega Contínua", "Pipelines"],
   },
   {
     title: "JavaScript e HTML: desenvolva um jogo e pratique lógica",
     institution: "Alura",
     category: "Programação",
     date: "mai de 2023",
-    credential: "be369ed8-23ac-4a3d-81c1-7c9b9423ee8d",
+    skills: ["JavaScript", "HTML", "Lógica de Programação", "DOM"],
   },
   {
     title: "Lógica de programação: comece em lógica com o jogo Pong",
     institution: "Alura",
     category: "Programação",
     date: "mai de 2023",
-    credential: "5286eba3-fd0c-46a3-894a-7a7be18b2f37",
+    skills: ["Lógica de Programação", "JavaScript", "Game Dev"],
   },
   {
     title: "Python: começando com a linguagem",
     institution: "Alura",
     category: "Programação",
     date: "mai de 2023",
-    credential: "34e8ac0a-42ad-4533-81c0-e37fe6111c30",
+    skills: ["Python", "Sintaxe", "Estrutura de dados", "Algoritmos"],
   },
   {
     title:
@@ -185,79 +215,82 @@ const certifications = [
     institution: "Alura",
     category: "Linux",
     date: "abr de 2023",
-    credential: "ef51fa14-5b34-417a-a0fe-ac458fd2da94",
+    skills: [
+      "Linux",
+      "Distribuições",
+      "História do Linux",
+      "Sistema Operacional",
+    ],
   },
   {
     title: "Hardening e Configuração de Servidores",
     institution: "FIAP",
     category: "DevOps",
     date: "abr de 2023",
-    credential: "fdac96446a907ca479913a082e7b6cd3",
+    skills: ["Hardening", "Servidores", "Segurança", "Linux", "Configuração"],
   },
   {
     title: "Linux I: conhecendo e utilizando o terminal",
     institution: "Alura",
     category: "Linux",
     date: "abr de 2023",
-    credential: "010a2830-6f55-475f-a6ef-6e3703d1fd66",
+    skills: ["Linux", "Terminal", "CLI", "Comandos básicos"],
   },
   {
     title: "Linux II: programas, processos e pacotes",
     institution: "Alura",
     category: "Linux",
     date: "mar de 2023",
-    credential: "045fbddd-c77a-423c-b55b-2e3e318706c4",
+    skills: ["Linux", "Processos", "Pacotes", "Gerenciamento de Sistema"],
   },
   {
     title: "Lei Geral de Proteção de Dados (LGPD)",
     institution: "Fundação Bradesco",
     category: "Segurança",
     date: "out de 2022",
-    credential: "6750276A-8FC4-4E21-B0CA-44COC7E8BFEA",
+    skills: ["LGPD", "Segurança da Informação", "Privacidade", "Compliance"],
   },
   {
     title: "Estruturas de Computadores",
     institution: "FIAP",
     category: "Fundamentos",
     date: "set de 2022",
-    credential: "b7bdd6e4a76f4b524d7c00bbdc2ce222",
+    skills: ["Arquitetura de Computadores", "Hardware", "Fundamentos de TI"],
   },
   {
     title: "Algoritmos: Aprenda a programar",
     institution: "FIAP",
     category: "Fundamentos",
     date: "ago de 2022",
-    credential: "d94f580b5afcd7bcd9a15aedf69d880e",
-    skills: ["Java"],
+    skills: ["Java", "Algoritmos", "Lógica", "POO"],
   },
   {
     title: "Gestão de Infraestrutura de TI",
     institution: "FIAP",
     category: "Gestão",
     date: "ago de 2022",
-    credential: "3f6f10496f4683665c18b39c1067ce62",
+    skills: ["Infraestrutura", "Gestão de TI", "Servidores", "Cloud"],
   },
   {
     title: "Linux Fundamentos",
     institution: "FIAP",
     category: "Linux",
     date: "ago de 2022",
-    credential: "5727da5de4b04bb52e8823519458f675",
+    skills: ["Linux", "Comandos Básicos", "Sistema de Arquivos"],
   },
   {
     title: "Python",
     institution: "FIAP",
     category: "Programação",
     date: "ago de 2022",
-    credential: "66420de2a304617f2193a710a3bd0a7e",
-    skills: ["Python"],
+    skills: ["Python", "Sintaxe", "POO", "Automação"],
   },
   {
     title: "Formação Social e Sustentabilidade",
     institution: "FIAP",
     category: "Gestão",
     date: "mar de 2022",
-    credential: "43871aa363f1112fb169ddd13cabbc1b",
+    skills: ["Sustentabilidade", "Ética", "Responsabilidade Social"],
   },
 ];
 
@@ -275,6 +308,7 @@ const categoryColors: Record<string, string> = {
 
 export function CertificationsSection() {
   const [showAll, setShowAll] = useState(false);
+  const [expandedCert, setExpandedCert] = useState<string | null>(null);
   const displayedCerts = showAll ? certifications : certifications.slice(0, 9);
 
   return (
@@ -302,12 +336,13 @@ export function CertificationsSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayedCerts.map((cert, index) => (
             <motion.div
-              key={cert.credential || cert.title}
+              key={cert.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.05, rotateY: 5 }}
+              onClick={() => setExpandedCert(cert.title)}
               className="group relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 border border-gray-700 hover:border-green-500/50 transition-all cursor-pointer shadow-lg hover:shadow-green-500/20"
             >
               <div
@@ -324,7 +359,6 @@ export function CertificationsSection() {
                   {cert.title}
                 </h3>
                 <div className="flex items-center gap-2 text-gray-400 text-sm mb-2">
-                  <ExternalLink className="w-4 h-4" />
                   <span>{cert.institution}</span>
                 </div>
                 <p className="text-xs text-gray-500">{cert.date}</p>
@@ -370,6 +404,125 @@ export function CertificationsSection() {
           </motion.div>
         )}
       </div>
+      <AnimatePresence>
+        {expandedCert && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setExpandedCert(null)}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 max-w-2xl w-full border border-green-500/30 shadow-2xl shadow-green-500/20 relative overflow-hidden"
+            >
+              <button
+                onClick={() => setExpandedCert(null)}
+                className="absolute top-4 right-4 p-2 rounded-full bg-gray-700/50 hover:bg-gray-700 transition-colors"
+              >
+                <X className="w-5 h-5 text-gray-300" />
+              </button>
+
+              {(() => {
+                const cert = certifications.find(
+                  (c) => c.title === expandedCert,
+                );
+                if (!cert) return null;
+
+                return (
+                  <div>
+                    <div className="flex items-start gap-4 mb-6">
+                      <div
+                        className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${categoryColors[cert.category]} flex items-center justify-center shadow-lg flex-shrink-0`}
+                      >
+                        <Award className="w-8 h-8 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <span className="text-xs text-green-400 font-semibold uppercase tracking-wider">
+                          {cert.category}
+                        </span>
+                        <h3 className="text-2xl font-bold text-white mt-1 mb-2 leading-tight">
+                          {cert.title}
+                        </h3>
+                        <div className="flex items-center gap-2 text-gray-400 text-sm">
+                          <ExternalLink className="w-4 h-4" />
+                          <span>{cert.institution}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mb-6">
+                      <p className="text-sm text-gray-400">
+                        <span className="text-green-400 font-semibold">
+                          Data de emissão:
+                        </span>{" "}
+                        {cert.date}
+                      </p>
+                    </div>
+
+                    {cert.skills && cert.skills.length > 0 && (
+                      <div className="mb-6">
+                        <h4 className="text-sm font-semibold text-green-400 mb-3">
+                          Habilidades desenvolvidas:
+                        </h4>
+                        <div className="flex flex-wrap gap-2">
+                          {cert.skills.map((skill) => (
+                            <span
+                              key={skill}
+                              className="px-3 py-1.5 bg-green-500/10 text-green-400 rounded-lg border border-green-500/20 text-sm font-medium"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="border-t border-gray-700 pt-6">
+                      <h4 className="text-sm font-semibold text-green-400 mb-3">
+                        Sobre o curso:
+                      </h4>
+                      <p className="text-gray-300 text-sm leading-relaxed">
+                        {cert.category === "Cloud Computing" &&
+                          "Certificação focada em fundamentos de computação em nuvem, administração de recursos cloud e arquitetura de soluções escaláveis utilizando as principais plataformas do mercado."}
+                        {cert.category === "DevOps" &&
+                          "Curso abrangendo práticas de DevOps, incluindo automação, integração contínua, entrega contínua, containerização e orquestração de aplicações."}
+                        {cert.category === "Programação" &&
+                          "Formação em desenvolvimento de software com foco em boas práticas de programação, estruturas de dados, algoritmos e desenvolvimento de aplicações robustas."}
+                        {cert.category === "IA" &&
+                          "Curso introdutório sobre inteligência artificial generativa, explorando conceitos fundamentais, aplicações práticas e o impacto da IA no desenvolvimento de software."}
+                        {cert.category === "Arquitetura" &&
+                          "Certificação em arquitetura de software, abordando padrões de design, princípios SOLID, Domain Driven Design e fundamentos para construção de sistemas escaláveis e manuteníveis."}
+                        {cert.category === "Linux" &&
+                          "Formação em sistemas Linux, cobrindo linha de comando, administração de sistemas, gerenciamento de processos, pacotes e preparação para certificações LPI."}
+                        {cert.category === "Segurança" &&
+                          "Curso focado em segurança da informação, proteção de dados, conformidade com LGPD e boas práticas de segurança em desenvolvimento de software."}
+                        {cert.category === "Fundamentos" &&
+                          "Certificação em fundamentos de computação, incluindo estruturas de computadores, algoritmos básicos e conceitos essenciais de ciência da computação."}
+                        {cert.category === "Gestão" &&
+                          "Curso abordando gestão de infraestrutura de TI, práticas de sustentabilidade e aspectos sociais relacionados à tecnologia da informação."}
+                      </p>
+                    </div>
+
+                    <div className="mt-6 pt-6 border-t border-gray-700">
+                      <button
+                        onClick={() => setExpandedCert(null)}
+                        className="w-full py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-lg hover:from-green-600 hover:to-emerald-700 transition-all shadow-lg hover:shadow-green-500/50"
+                      >
+                        Fechar
+                      </button>
+                    </div>
+                  </div>
+                );
+              })()}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

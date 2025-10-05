@@ -6,12 +6,19 @@ import { Briefcase, MapPin } from "lucide-react";
 const experiences = [
   {
     company: "Management Solutions",
-    role: "Engenheiro de Software",
+    role: "Engenheiro de dados",
     period: "Set/2025 – Presente",
     location: "São Paulo, SP",
     description:
-      "Desenvolvimento de soluções para sistemas corporativos, com foco em desempenho, integração e confiabilidade. Uso de práticas de DevSecOps, testes automatizados e integração contínua. Colaboração com equipes multidisciplinares para entrega de software seguro e escalável.",
-    technologies: ["DevSecOps", "CI/CD", "Testes Automatizados"],
+      "desenvolvimento e manutenção de pipelines de dados, realizando a extração, transformação e carga (ETL) de grandes volumes de informações provenientes de múltiplas fontes. Atuo no cruzamento e integração de dados para suporte à análise e tomada de decisão. Utilizo ferramentas e linguagens como SQL, Python, PySpark, Databricks, Pandas e NumPy, aplicando boas práticas de engenharia de dados para garantir a qualidade, integridade e eficiência no processamento.",
+    technologies: [
+      "PySpark",
+      "CI/CD",
+      "Python",
+      "SQL",
+      "Big Data",
+      "Delta Lake",
+    ],
   },
   {
     company: "Eval Digital",
@@ -21,6 +28,9 @@ const experiences = [
     description:
       "Desenvolvimento e manutenção de sistemas para o Banco Central (PIX e SFN). Implementação de testes unitários, otimização de desempenho e detecção de memory leaks. Uso de Docker, Kubernetes e bancos Oracle, SQL Server e MySQL. Aplicação de soluções compatíveis com LGPD e segurança de dados.",
     technologies: [
+      "C++",
+      "Java",
+      "NextJs",
       "Docker",
       "Kubernetes",
       "Oracle",
@@ -36,7 +46,12 @@ const experiences = [
     location: "São Paulo, SP",
     description:
       "Participação em projetos de criptografia de ponta a ponta e proteção de dados. Responsável por documentação técnica e análise de requisitos junto a clientes. Apoio no desenvolvimento de sistemas de alta disponibilidade.",
-    technologies: ["Criptografia", "Segurança", "Documentação Técnica"],
+    technologies: [
+      "Criptografia",
+      "Segurança",
+      "Documentação Técnica",
+      "Linux",
+    ],
   },
 ];
 
