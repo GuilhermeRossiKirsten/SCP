@@ -1,10 +1,9 @@
-import database from "infra/database.js";
-import { InternalServerError } from "infra/errors.js";
+import database from "@/infra/database";
+import { InternalServerError } from "@/infra/errors";
 
-async function status(request, response) {
-  //const updateAt = Date.now();
+export async function GET() {
   try {
-    const updateAt = new Date().toISOString();
+    const updatedAt = new Date().toISOString();
 
     const databaseVersionResult = await database.query("SHOW server_version;");
     const databaseVersionValue = databaseVersionResult.rows[0].server_version;
@@ -18,14 +17,14 @@ async function status(request, response) {
 
     const databaseName = process.env.POSTGRES_DB;
     const databaseOpenedConnectionsResult = await database.query({
-      text: "SELECT count(*)::int FROM pg_stat_activity where datname = $1;",
+      text: "SELECT count(*)::int FROM pg_stat_activity WHERE datname = $1;",
       values: [databaseName],
     });
     const databaseOpenedConnectionsValue =
       databaseOpenedConnectionsResult.rows[0].count;
 
-    response.status(200).json({
-      updated_at: updateAt,
+    const body = {
+      updated_at: updatedAt,
       dependencies: {
         database: {
           version: databaseVersionValue,
@@ -33,13 +32,18 @@ async function status(request, response) {
           opened_connections: databaseOpenedConnectionsValue,
         },
       },
+    };
+
+    return new Response(JSON.stringify(body), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     const publicErrorObject = new InternalServerError({ cause: error });
-    console.error(publicErrorObject);
-    response.status(500).json(publicErrorObject);
+    return new Response(JSON.stringify(publicErrorObject), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 }
-
-export default status;
