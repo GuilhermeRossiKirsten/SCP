@@ -22,7 +22,7 @@ export default function Home() {
     // Auto-hide intro after 5 seconds
     const timer = setTimeout(() => {
       setShowIntro(false);
-    }, 5000);
+    }, 100000);
 
     return () => clearTimeout(timer);
   }, []);
