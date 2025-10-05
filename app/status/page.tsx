@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import useSWR from "swr";
 
@@ -13,7 +15,7 @@ export default function HealthCheck() {
     },
   });
 
-  const fetchApi = async (key) => {
+  const fetchApi = async (key: any) => {
     const response = await fetch(key);
     const responseBody = await response.json();
     setHealthData(responseBody);
