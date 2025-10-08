@@ -1,29 +1,8 @@
-import migrationRunner from "node-pg-migrate";
-import { resolve } from "node:path";
-import database from "@/infra/database.js";
-
-async function runMigrations(dryRun) {
-  const dbClient = await database.getNewClient();
-
-  try {
-    const migrationsOptions = {
-      dbClient,
-      dryRun,
-      dir: resolve("infra", "migrations"),
-      direction: "up",
-      verbose: true,
-      migrationsTable: "pgmigrations",
-    };
-
-    return await migrationRunner(migrationsOptions);
-  } finally {
-    await dbClient.end();
-  }
-}
+import migrator from "@/models/migrator";
 
 export async function GET() {
   try {
-    const pendingMigrations = await runMigrations(true);
+    const pendingMigrations = await migrator.runMigrations(true);
     return new Response(JSON.stringify(pendingMigrations), {
       status: 200,
       headers: { "Content-Type": "application/json" },
@@ -42,7 +21,7 @@ export async function GET() {
 
 export async function POST() {
   try {
-    const appliedMigrations = await runMigrations(false);
+    const appliedMigrations = await migrator.runMigrations(false);
     const statusCode = appliedMigrations.length > 0 ? 201 : 200;
 
     return new Response(JSON.stringify(appliedMigrations), {
