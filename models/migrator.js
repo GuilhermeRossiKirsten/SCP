@@ -22,7 +22,7 @@ async function runMigrations(dryRun) {
 }
 
 const migrator = {
-  runMigrations
-}
+  runMigrations,
+};
 
 export default migrator;
