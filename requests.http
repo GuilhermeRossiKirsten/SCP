@@ -6,3 +6,7 @@ Content-Type: application/json
   "email": "guilherme@gmail.com",
   "password": "senha123"
 }
+
+###
+
+GET http://localhost:3000/api/v1/users/guilherme
