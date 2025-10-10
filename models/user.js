@@ -44,11 +44,11 @@ async function create(userInput) {
     const result = await database.query({
       text: `
       INSERT INTO
-      users (username, email, password)
+        users (username, email, password)
       VALUES
-      ($1, $2, $3)
+        ($1, $2, $3)
       RETURNING
-      *`,
+        *`,
 
       values: [userInput.username, userInput.email, userInput.password],
     });
@@ -83,16 +83,16 @@ async function update(requestUsername, requestBody) {
     const results = await database.query({
       text: `
       UPDATE
-      users
+        users
       SET
-      username = $2,
-      email = $3,
-      password = $4,
-      updated_at = timezone('utc', now())
+        username = $2,
+        email = $3,
+        password = $4,
+        updated_at = timezone('utc', now())
       WHERE
-      id = $1
+        id = $1
       RETURNING
-      *
+        *
       `,
       values: [
         userWithNewValues.id,
@@ -110,11 +110,11 @@ async function validateUniqueUsername(username) {
   const result = await database.query({
     text: `
     SELECT
-    username
+      username
     FROM
-    users
+      users
     WHERE
-    LOWER(username) = LOWER($1)`,
+      LOWER(username) = LOWER($1)`,
     values: [username],
   });
 
@@ -130,11 +130,11 @@ async function validateUniqueEmail(email) {
   const result = await database.query({
     text: `
     SELECT
-    email
+      email
     FROM
-    users
+      users
     WHERE
-    LOWER(email) = LOWER($1)`,
+      LOWER(email) = LOWER($1)`,
     values: [email],
   });
 

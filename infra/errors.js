@@ -56,3 +56,27 @@ export class NotFoundError extends Error {
     };
   }
 }
+
+export class NumberOutOfRangeError extends Error {
+  constructor({ cause, message, action, value }) {
+    super(
+      message ||
+        `O valor fornecido (${value}) está fora do intervalo permitido (1 a 100).`,
+      {
+        cause,
+      },
+    );
+    this.name = "NumberOutOfRangeError";
+    this.action = action || "Envie um número entre 1 e 100 e tente novamente.";
+    this.statusCode = 400;
+  }
+
+  toJSON() {
+    return {
+      message: this.message,
+      name: this.name,
+      action: this.action,
+      status_code: this.statusCode,
+    };
+  }
+}
