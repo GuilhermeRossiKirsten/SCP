@@ -19,8 +19,6 @@ export function ContactSection() {
 
     const form = e.currentTarget;
 
-    console.log(form);
-
     try {
       await emailjs.sendForm(
         process.env.NEXT_PUBLIC_SERVICE_ID || "", // troque pelo seu Service ID

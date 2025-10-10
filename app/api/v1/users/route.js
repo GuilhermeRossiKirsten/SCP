@@ -1,4 +1,4 @@
-import { ValidationError } from "@/infra/errors";
+import { ValidationError, InternalServerError } from "@/infra/errors";
 import user from "@/models/user";
 
 export async function POST(request) {
@@ -20,7 +20,8 @@ export async function POST(request) {
     }
 
     console.error(error);
-    return new Response(JSON.stringify({ error: "Failed to run migrations" }), {
+    const publicErrorObject = new InternalServerError({ cause: error });
+    return new Response(JSON.stringify(publicErrorObject), {
       status: 500,
       headers: { "Content-Type": "application/json" },
     });
