@@ -1,4 +1,5 @@
 import migrator from "@/models/migrator";
+import { InternalServerError } from "@/infra/errors";
 
 export async function GET() {
   try {
@@ -9,13 +10,11 @@ export async function GET() {
     });
   } catch (error) {
     console.error(error);
-    return new Response(
-      JSON.stringify({ error: "Failed to fetch migrations" }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json" },
-      },
-    );
+    const publicErrorObject = new InternalServerError({ cause: error });
+    return new Response(JSON.stringify(publicErrorObject), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 }
 
@@ -30,7 +29,8 @@ export async function POST() {
     });
   } catch (error) {
     console.error(error);
-    return new Response(JSON.stringify({ error: "Failed to run migrations" }), {
+    const publicErrorObject = new InternalServerError({ cause: error });
+    return new Response(JSON.stringify(publicErrorObject), {
       status: 500,
       headers: { "Content-Type": "application/json" },
     });

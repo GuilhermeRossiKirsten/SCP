@@ -45,7 +45,7 @@ describe("POST /api/v1/users", () => {
         "incorrectPassord",
         responseBody.password,
       );
-      
+
       expect(correctPasswordMatch).toBe(true);
       expect(incorrectPasswordMatch).toBe(false);
     });
@@ -75,7 +75,7 @@ describe("POST /api/v1/users", () => {
       expect(response2Body).toEqual({
         message: "O email informado já está sendo utilizado.",
         name: "ValidationError",
-        action: "Utilize outro email para realizar o cadastro.",
+        action: "Utilize outro email para realizar esta operação.",
         status_code: 409,
       });
     });
@@ -105,7 +105,7 @@ describe("POST /api/v1/users", () => {
       expect(response2Body).toEqual({
         message: "O username informado já está sendo utilizado.",
         name: "ValidationError",
-        action: "Utilize outro username para realizar o cadastro.",
+        action: "Utilize outro username para realizar esta operação.",
         status_code: 409,
       });
     });
