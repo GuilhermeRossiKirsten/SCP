@@ -80,3 +80,29 @@ export class NumberOutOfRangeError extends Error {
     };
   }
 }
+
+export class RateLimitError extends Error {
+  constructor({ cause, message, action, retryAfterSeconds }) {
+    super(
+      message ||
+        `Você atingiu o limite de requisições. Aguarde ${retryAfterSeconds} segundos.`,
+      { cause },
+    );
+    this.name = "RateLimitError";
+    this.action =
+      action ||
+      `Aguarde ${retryAfterSeconds} segundos antes de tentar novamente.`;
+    this.statusCode = 429;
+    this.retryAfterSeconds = retryAfterSeconds;
+  }
+
+  toJSON() {
+    return {
+      message: this.message,
+      name: this.name,
+      action: this.action,
+      status_code: this.statusCode,
+      retry_after_seconds: this.retryAfterSeconds,
+    };
+  }
+}
