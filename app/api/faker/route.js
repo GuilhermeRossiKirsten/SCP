@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { faker } from "@faker-js/faker";
-import { NumberOutOfRangeError, InternalServerError } from "@/infra/errors";
+import {
+  NumberOutOfRangeError,
+  InternalServerError,
+  RateLimitError,
+} from "@/infra/errors";
 
 // Limite de tempo entre requisições (ms)
 const RATE_LIMIT_MS = 5000; // 5 segundos
@@ -40,13 +44,18 @@ export async function GET(request) {
       const lastRequestTime = clients.get(ip) || 0;
       const now = Date.now();
 
-      if (now - lastRequestTime < RATE_LIMIT_MS) {
-        return NextResponse.json(
-          {
-            error: `Espere ${RATE_LIMIT_MS / 1000} segundos entre requisições.`,
-          },
-          { status: 429 },
-        );
+      const timeSinceLastRequest = now - lastRequestTime;
+
+      if (timeSinceLastRequest < RATE_LIMIT_MS) {
+        const retryAfterMs = RATE_LIMIT_MS - timeSinceLastRequest;
+        const retryAfterSeconds = retryAfterMs / 1000;
+
+        const error = new RateLimitError({
+          retryAfterSeconds,
+          cause: `Última requisição feita há ${timeSinceLastRequest}ms`,
+        });
+
+        return NextResponse.json(error.toJSON(), { status: error.statusCode });
       }
 
       // Atualiza timestamp da última requisição
