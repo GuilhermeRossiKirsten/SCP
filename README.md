@@ -40,6 +40,31 @@ O sistema contempla funcionalidades como gerenciamento de usuários, controle de
 - `GET /api/v1/migrations` — Lista todas as migrações aplicadas no banco de dados.
 - `POST /api/v1/migrations` — Aplica novas migrações.
 
+### Sessões
+
+- `POST /api/v1/sessions` — Cria uma nova sessão de autenticação (login).
+  - Body esperado:
+    ```json
+    {
+      "email": "string",
+      "password": "string"
+    }
+    ```
+  - Resposta:
+    ```json
+    {
+      "id": "uuid",
+      "token": "string",
+      "user_id": "uuid",
+      "expires_at": "ISO8601",
+      "created_at": "ISO8601",
+      "updated_at": "ISO8601"
+    }
+    ```
+  - Utilização: Envie as credenciais do usuário para autenticação. Se válidas, retorna um token de sessão e informações da sessão. O token também é enviado como cookie HTTP Only.
+  - Erros:
+    - Se email ou senha estiverem incorretos, retorna status 401 e mensagem de erro padronizada.
+
 ### GitHub
 
 - `GET /api/github/repos` — Retorna lista de repositórios do GitHub integrados/configurados.
