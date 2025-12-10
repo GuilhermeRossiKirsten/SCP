@@ -18,7 +18,20 @@ export async function GET() {
 
     const repos = await response.json();
 
-    const projects = repos.map((repo: any) => ({
+    interface GitHubRepo {
+      id: number;
+      name: string;
+      description: string | null;
+      topics: string[];
+      language: string;
+      stargazers_count: number;
+      forks_count: number;
+      html_url: string;
+      homepage: string | null;
+      updated_at: string;
+    }
+
+    const projects = repos.map((repo: GitHubRepo) => ({
       id: repo.id,
       title: repo.name,
       description: repo.description || "Sem descrição disponível",
