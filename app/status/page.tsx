@@ -15,7 +15,7 @@ export default function HealthCheck() {
     },
   });
 
-  const fetchApi = async (key: any) => {
+  const fetchApi = async (key: string) => {
     const response = await fetch(key);
     const responseBody = await response.json();
     setHealthData(responseBody);
