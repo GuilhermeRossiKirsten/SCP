@@ -28,7 +28,7 @@ export async function GET(request: Request) {
       data: articles,
       count: articles.length,
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       {
         success: false,

@@ -207,7 +207,6 @@ export function markdownToHtml(markdown: string): string {
   let listType = "";
   let inCodeBlock = false;
   let inTable = false;
-  let tableHeaders: string[] = [];
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
@@ -222,7 +221,6 @@ export function markdownToHtml(markdown: string): string {
       if (inTable) {
         processed.push("</tbody></table>");
         inTable = false;
-        tableHeaders = [];
       }
       processed.push("");
       continue;
@@ -238,7 +236,6 @@ export function markdownToHtml(markdown: string): string {
       if (inTable) {
         processed.push("</tbody></table>");
         inTable = false;
-        tableHeaders = [];
       }
       processed.push(trimmedLine);
       continue;
@@ -252,7 +249,6 @@ export function markdownToHtml(markdown: string): string {
       if (inTable) {
         processed.push("</tbody></table>");
         inTable = false;
-        tableHeaders = [];
       }
       inCodeBlock = true;
       processed.push(trimmedLine);
@@ -279,7 +275,6 @@ export function markdownToHtml(markdown: string): string {
       if (inTable) {
         processed.push("</tbody></table>");
         inTable = false;
-        tableHeaders = [];
       }
       processed.push(trimmedLine);
       continue;
@@ -294,7 +289,6 @@ export function markdownToHtml(markdown: string): string {
       if (inTable) {
         processed.push("</tbody></table>");
         inTable = false;
-        tableHeaders = [];
       }
       processed.push(trimmedLine);
       continue;
@@ -321,7 +315,6 @@ export function markdownToHtml(markdown: string): string {
           processed.push(listType === "ul" ? "</ul>" : "</ol>");
           inList = false;
         }
-        tableHeaders = cells;
         processed.push("<table>");
         processed.push("<thead><tr>");
         cells.forEach((cell) => {
@@ -361,7 +354,6 @@ export function markdownToHtml(markdown: string): string {
       if (inTable) {
         processed.push("</tbody></table>");
         inTable = false;
-        tableHeaders = [];
       }
       const level = trimmedLine.match(/^(#{1,6})\s+/)?.[1].length || 1;
       const content = trimmedLine.replace(/^#{1,6}\s+/, "");
@@ -404,7 +396,6 @@ export function markdownToHtml(markdown: string): string {
       if (inTable) {
         processed.push("</tbody></table>");
         inTable = false;
-        tableHeaders = [];
       }
       const content = trimmedLine.replace(/^>\s*/, "");
       processed.push(`<blockquote>${processInline(content)}</blockquote>`);
@@ -419,7 +410,6 @@ export function markdownToHtml(markdown: string): string {
     if (inTable) {
       processed.push("</tbody></table>");
       inTable = false;
-      tableHeaders = [];
     }
     processed.push(`<p>${processInline(trimmedLine)}</p>`);
   }
