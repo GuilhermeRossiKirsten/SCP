@@ -1,0 +1,268 @@
+/**
+ * Tema customizado para Prism.js
+ * Baseado no design verde/escuro da aplicação
+ * Cores principais: #10b981 (green-500), #059669 (green-600), #34d399 (green-400)
+ */
+
+/* Base do código */
+.article-content code[class*="language-"],
+.article-content pre[class*="language-"] {
+  color: #e5e7eb; /* gray-200 */
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+  font-family:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  line-height: 1.6;
+  tab-size: 4;
+  hyphens: none;
+}
+
+/* Tokens - Palavras-chave (if, else, function, const, let, class, etc) */
+.token.keyword,
+.token.control,
+.token.directive,
+.token.unit {
+  color: #10b981; /* green-500 - Tom principal */
+  font-weight: 600;
+}
+
+/* Tokens - Tipos e classes (String, Number, Array, Interface, etc) */
+.token.class-name,
+.token.type-definition,
+.token.builtin,
+.token.primitive {
+  color: #34d399; /* green-400 - Tom mais claro */
+  font-weight: 500;
+}
+
+/* Tokens - Funções e métodos */
+.token.function,
+.token.method {
+  color: #6ee7b7; /* green-300 */
+}
+
+/* Tokens - Strings */
+.token.string,
+.token.char,
+.token.attr-value,
+.token.regex,
+.token.variable {
+  color: #fbbf24; /* amber-400 - Contraste com verde */
+}
+
+/* Tokens - Números */
+.token.number,
+.token.boolean,
+.token.constant {
+  color: #fb923c; /* orange-400 */
+}
+
+/* Tokens - Comentários */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #6b7280; /* gray-500 */
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* Tokens - Operadores e pontuação */
+.token.operator,
+.token.punctuation {
+  color: #9ca3af; /* gray-400 */
+}
+
+/* Tokens - Propriedades */
+.token.property,
+.token.attr-name,
+.token.tag {
+  color: #059669; /* green-600 - Tom mais escuro */
+  font-weight: 500;
+}
+
+/* Tokens - Seletores CSS */
+.token.selector,
+.token.important,
+.token.atrule {
+  color: #10b981; /* green-500 */
+  font-weight: 600;
+}
+
+/* Tokens - Entidades e símbolos */
+.token.entity,
+.token.url,
+.token.symbol,
+.token.inserted {
+  color: #34d399; /* green-400 */
+}
+
+/* Tokens - Texto deletado */
+.token.deleted {
+  color: #ef4444; /* red-500 */
+  text-decoration: line-through;
+}
+
+/* Tokens - Importantes e Bold */
+.token.bold,
+.token.important {
+  font-weight: 700;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+/* Namespace */
+.token.namespace {
+  opacity: 0.7;
+}
+
+/* Tokens específicos por linguagem */
+
+/* JavaScript/TypeScript - Template strings */
+.language-javascript .token.template-string,
+.language-typescript .token.template-string {
+  color: #fbbf24; /* amber-400 */
+}
+
+.language-javascript .token.template-string .token.interpolation,
+.language-typescript .token.template-string .token.interpolation {
+  color: #e5e7eb; /* gray-200 */
+}
+
+.language-javascript
+  .token.template-string
+  .token.interpolation
+  .token.interpolation-punctuation,
+.language-typescript
+  .token.template-string
+  .token.interpolation
+  .token.interpolation-punctuation {
+  color: #10b981; /* green-500 */
+}
+
+/* CSS - Valores de propriedades */
+.language-css .token.property {
+  color: #059669; /* green-600 */
+}
+
+.language-css .token.function {
+  color: #6ee7b7; /* green-300 */
+}
+
+/* JSON - Chaves */
+.language-json .token.property {
+  color: #34d399; /* green-400 */
+}
+
+.language-json .token.string {
+  color: #fbbf24; /* amber-400 */
+}
+
+/* Bash - Comandos */
+.language-bash .token.function {
+  color: #10b981; /* green-500 */
+  font-weight: 600;
+}
+
+.language-bash .token.parameter {
+  color: #e5e7eb; /* gray-200 */
+}
+
+/* Python - Decorators */
+.language-python .token.decorator {
+  color: #10b981; /* green-500 */
+}
+
+.language-python .token.keyword {
+  color: #10b981; /* green-500 */
+  font-weight: 600;
+}
+
+/* C/C++ - Preprocessor */
+.language-c .token.directive,
+.language-cpp .token.directive {
+  color: #10b981; /* green-500 */
+  font-weight: 600;
+}
+
+/* C++ - Namespaces (std::, boost::, etc) */
+.language-cpp .token.namespace,
+.language-cpp .token.std-namespace {
+  color: #34d399; /* green-400 */
+  font-weight: 600;
+}
+
+/* C++ - Funções std:: e biblioteca padrão */
+.language-cpp .token.std-function {
+  color: #6ee7b7; /* green-300 */
+  font-weight: 500;
+}
+
+/* C++ - STL Types (vector, map, string, etc) */
+.language-cpp .token.stl-type {
+  color: #34d399; /* green-400 */
+  font-weight: 500;
+}
+
+/* C++ - Headers da STL (#include <vector>) */
+.language-cpp .token.std-header {
+  color: #fbbf24; /* amber-400 */
+  font-weight: 400;
+}
+
+/* C++ - Template brackets e conteúdo */
+.language-cpp .token.template-bracket {
+  color: #10b981; /* green-500 */
+  font-weight: 700;
+}
+
+.language-cpp .token.template-content {
+  color: #34d399; /* green-400 */
+}
+
+/* C++ - Operadores de stream (<< e >>) */
+.language-cpp .token.stream-operator {
+  color: #10b981; /* green-500 */
+  font-weight: 700;
+}
+
+/* C++ - Operadores específicos (::, ->, etc) */
+.language-cpp .token.operator {
+  color: #9ca3af; /* gray-400 */
+}
+
+/* Docker - Instruções */
+.language-docker .token.keyword {
+  color: #10b981; /* green-500 */
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* SQL - Comandos */
+.language-sql .token.keyword {
+  color: #10b981; /* green-500 */
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Realce de linha (opcional - para implementação futura) */
+.line-highlight {
+  background: rgba(16, 185, 129, 0.1);
+  border-left: 3px solid #10b981;
+}
+
+/* Seleção de texto dentro de code blocks */
+.article-content code[class*="language-"]::selection,
+.article-content pre[class*="language-"]::selection,
+.article-content code[class*="language-"] *::selection,
+.article-content pre[class*="language-"] *::selection {
+  background: rgba(16, 185, 129, 0.3);
+  color: #ffffff;
+}

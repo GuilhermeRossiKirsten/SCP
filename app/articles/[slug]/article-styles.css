@@ -1,0 +1,214 @@
+/* Estilos customizados para renderização de Markdown */
+
+/* Code block container positioning */
+.article-content .code-block {
+  position: relative;
+}
+
+/* Copy button styles */
+.article-content .copy-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.article-content .copy-button:hover {
+  transform: scale(1.05);
+}
+
+.article-content .copy-button:active {
+  transform: scale(0.95);
+}
+
+/* Scrollbar customizada para blocos de código */
+.article-content .code-block code::-webkit-scrollbar {
+  height: 8px;
+}
+
+.article-content .code-block code::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.article-content .code-block code::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.2);
+  border-radius: 4px;
+}
+
+.article-content .code-block code::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.4);
+}
+
+/* Seleção de texto customizada */
+.article-content ::selection {
+  background: rgba(16, 185, 129, 0.3);
+  color: white;
+}
+
+.article-content ::-moz-selection {
+  background: rgba(16, 185, 129, 0.3);
+  color: white;
+}
+
+/* Smooth scroll para anchors */
+.article-content h2[id],
+.article-content h3[id],
+.article-content h4[id] {
+  scroll-margin-top: 6rem;
+}
+
+/* Hover effect para headings com anchors */
+.article-content h2:hover,
+.article-content h3:hover,
+.article-content h4:hover {
+  cursor: pointer;
+}
+
+/* Animação sutil para links externos */
+.article-content a[target="_blank"]::after {
+  content: "↗";
+  font-size: 0.75em;
+  margin-left: 0.25em;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.article-content a[target="_blank"]:hover::after {
+  opacity: 1;
+}
+
+/* Estilo para tabelas (caso seja adicionado suporte) */
+.article-content table {
+  width: 100%;
+  margin: 2rem 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid rgba(16, 185, 129, 0.1);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.article-content thead {
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.article-content th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: rgb(16, 185, 129);
+  border-bottom: 2px solid rgba(16, 185, 129, 0.1);
+}
+
+.article-content td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.05);
+  color: rgb(209, 213, 219);
+}
+
+.article-content tr:last-child td {
+  border-bottom: none;
+}
+
+/* Destaque de código inline em contexto */
+.article-content p .inline-code,
+.article-content li .inline-code {
+  position: relative;
+  top: -0.05em;
+}
+
+/* Espaçamento especial para elementos consecutivos */
+.article-content h2 + h3 {
+  margin-top: 2rem;
+}
+
+.article-content h3 + h4 {
+  margin-top: 1.5rem;
+}
+
+/* Destaque visual para primeiro parágrafo após heading */
+.article-content h2 + p,
+.article-content h3 + p {
+  margin-top: 1.5rem;
+}
+
+/* Loading skeleton para imagens */
+.article-content .image-wrapper img {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.article-content .image-wrapper img[src] {
+  animation: none;
+  background: transparent;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Efeito de fade-in para imagens carregadas */
+.article-content .image-wrapper img {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.article-content .image-wrapper img[src] {
+  opacity: 1;
+}
+
+/* Responsividade adicional */
+@media (max-width: 640px) {
+  .article-content .code-block code {
+    font-size: 0.875rem;
+    padding: 1rem;
+  }
+
+  .article-content .code-block::before {
+    font-size: 0.625rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .article-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .article-content h3 {
+    font-size: 1.25rem;
+  }
+
+  .article-content h4 {
+    font-size: 1.125rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .article-content .code-block {
+    page-break-inside: avoid;
+    border: 1px solid #333;
+  }
+
+  .article-content h2,
+  .article-content h3,
+  .article-content h4 {
+    page-break-after: avoid;
+  }
+
+  .article-content a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+}

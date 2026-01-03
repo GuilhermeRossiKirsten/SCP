@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, BookOpen } from "lucide-react";
+import Link from "next/link";
 
 const roles = [
   "C++ Developer",
@@ -193,6 +194,7 @@ export function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Button
               onClick={scrollToProjects}
@@ -201,6 +203,16 @@ export function HeroSection() {
             >
               Ver Projetos
             </Button>
+            <Link href="/articles">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-green-500/50 hover:border-green-500 hover:bg-green-500/10 text-white font-semibold px-8 py-6 text-lg rounded-full transition-all hover:scale-105"
+              >
+                <BookOpen className="w-5 h-5 mr-2" />
+                Ler Artigos
+              </Button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>
