@@ -8,6 +8,14 @@ O sistema contempla funcionalidades como gerenciamento de usuários, controle de
 
 ## Funcionalidades
 
+- **Sistema de Artigos/Blog:**
+  - Galeria de artigos com filtros por busca e tags
+  - Visualização de artigos em Markdown com syntax highlighting profissional (20+ linguagens)
+  - Suporte a metadados (data, autor, tags) via frontmatter
+  - Copy-to-clipboard nos blocos de código com feedback visual
+  - Design responsivo e otimizado para leitura
+  - API REST para listagem e consulta de artigos
+
 ## Endpoints da API
 
 ### Usuários
@@ -69,6 +77,48 @@ O sistema contempla funcionalidades como gerenciamento de usuários, controle de
 
 - `GET /api/github/repos` — Retorna lista de repositórios do GitHub integrados/configurados.
 
+### Artigos
+
+- `GET /api/articles` — Lista todos os artigos publicados.
+
+  - Query params opcionais:
+    - `search`: Busca por título
+    - `tag`: Filtra por tag específica
+  - Resposta:
+    ```json
+    {
+      "success": true,
+      "data": [
+        {
+          "slug": "introducao-cpp-moderno",
+          "title": "Introdução ao C++ Moderno",
+          "description": "O C++ moderno trouxe mudanças...",
+          "date": "2026-01-02",
+          "author": "Guilherme Rossi Kirsten",
+          "tags": ["C++", "Programação", "Performance"]
+        }
+      ],
+      "count": 1
+    }
+    ```
+
+- `GET /api/articles/[slug]` — Consulta artigo específico por slug.
+  - Resposta:
+    ```json
+    {
+      "success": true,
+      "data": {
+        "slug": "introducao-cpp-moderno",
+        "title": "Introdução ao C++ Moderno",
+        "description": "O C++ moderno trouxe mudanças...",
+        "date": "2026-01-02",
+        "author": "Guilherme Rossi Kirsten",
+        "tags": ["C++", "Programação"],
+        "content": "# Título\n\nConteúdo em Markdown..."
+      }
+    }
+    ```
+
 ### Faker
 
 - `GET /api/faker` — Retorna dados fictícios para testes e desenvolvimento.
@@ -76,6 +126,24 @@ O sistema contempla funcionalidades como gerenciamento de usuários, controle de
 ## Home Page
 
 A página inicial apresenta um portfólio moderno e interativo, destacando informações pessoais, habilidades, projetos, certificações, linha do tempo e formas de contato. Utiliza componentes visuais dinâmicos, como animações de partículas, parallax e cursor personalizado, proporcionando uma experiência atraente e responsiva.
+
+## Artigos
+
+Sistema completo de blog integrado ao portfólio:
+
+- **Galeria**: `/articles` - Exibe todos os artigos com busca e filtros por tags
+- **Visualização**: `/articles/[slug]` - Renderiza artigos em Markdown com syntax highlighting
+- **Features**:
+
+  - Parser Markdown customizado sem dependências externas
+  - Syntax highlighting com Prism.js (JavaScript, TypeScript, Python, C++, Rust, Go, SQL, Docker, YAML, e mais)
+  - Destaque especial para C++ (std::, templates, operators, headers, STL types)
+  - Tema verde/escuro consistente com o design do site
+  - Botão de copiar código com feedback visual
+  - Filtros client-side por título e tags
+  - Loading states e animações suaves
+  - SEO-friendly com metadados dinâmicos
+  - Typography otimizada para leitura
 
 - **Gerenciamento de Usuários:**
 
@@ -100,8 +168,14 @@ A página inicial apresenta um portfólio moderno e interativo, destacando infor
 - **Frontend Moderno:**
 
   - Componentes reutilizáveis para seções como sobre, certificações, contato, educação, projetos, habilidades, linha do tempo, etc. (diretório `components/`).
+  - Sistema de artigos com componentes especializados:
+    - `ArticlesFilters` - Busca e filtros por tags com debounce
+    - `ArticleSkeleton` - Loading states elegantes
+    - `FormattedDate` - Formatação de datas SSR-safe
+    - `CodeBlock` - Blocos de código com botão copiar
   - Efeitos visuais interativos como parallax, partículas e cursor customizado.
   - Temas e estilização global via CSS (`app/globals.css`, `styles/globals.css`).
+  - Syntax highlighting customizado com tema verde/escuro (`prism-theme.css`).
 
 - **Infraestrutura:**
 
@@ -115,9 +189,13 @@ A página inicial apresenta um portfólio moderno e interativo, destacando infor
 ## Estrutura de Pastas
 
 - `app/` — Páginas, rotas de API e arquivos globais do Next.js.
+  - `app/articles/` — Galeria e páginas de artigos individuais
+  - `app/api/articles/` — Endpoints REST para sistema de artigos
 - `components/` — Componentes React reutilizáveis para o frontend.
+- `content/articles/` — Artigos em Markdown com frontmatter (data, autor, tags).
 - `infra/` — Infraestrutura, banco de dados, scripts e migrações.
 - `lib/` — Utilitários e funções auxiliares.
+  - `lib/markdown.ts` — Parser Markdown customizado com syntax highlighting
 - `models/` — Modelos de dados e lógica.
 - `styles/` — Arquivos de estilos globais.
 - `tests/` — Testes automatizados de integração.
@@ -137,12 +215,27 @@ A página inicial apresenta um portfólio moderno e interativo, destacando infor
 
 ## Tecnologias Utilizadas
 
-- Next.js
-- React
-- Node.js
-- Docker
-- PostgreSQL
-- Jest (testes)
+- **Frontend:**
+
+  - Next.js 16
+  - React 19
+  - TypeScript
+  - Tailwind CSS 4
+  - Framer Motion (animações)
+  - Prism.js (syntax highlighting)
+
+- **Backend:**
+
+  - Node.js
+  - PostgreSQL
+  - Docker
+
+- **Qualidade:**
+  - Jest (testes)
+  - ESLint
+  - Prettier
+  - Husky (git hooks)
+  - Commitizen (commits padronizados)
 
 ## Hospedagem
 
