@@ -206,6 +206,8 @@ export function markdownToHtml(markdown: string): string {
   let inList = false;
   let listType = "";
   let inCodeBlock = false;
+  let inTable = false;
+  let tableHeaders: string[] = [];
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
@@ -216,6 +218,11 @@ export function markdownToHtml(markdown: string): string {
       if (inList) {
         processed.push(listType === "ul" ? "</ul>" : "</ol>");
         inList = false;
+      }
+      if (inTable) {
+        processed.push("</tbody></table>");
+        inTable = false;
+        tableHeaders = [];
       }
       processed.push("");
       continue;
@@ -228,6 +235,11 @@ export function markdownToHtml(markdown: string): string {
         processed.push(listType === "ul" ? "</ul>" : "</ol>");
         inList = false;
       }
+      if (inTable) {
+        processed.push("</tbody></table>");
+        inTable = false;
+        tableHeaders = [];
+      }
       processed.push(trimmedLine);
       continue;
     }
@@ -236,6 +248,11 @@ export function markdownToHtml(markdown: string): string {
       if (inList) {
         processed.push(listType === "ul" ? "</ul>" : "</ol>");
         inList = false;
+      }
+      if (inTable) {
+        processed.push("</tbody></table>");
+        inTable = false;
+        tableHeaders = [];
       }
       inCodeBlock = true;
       processed.push(trimmedLine);
@@ -259,6 +276,11 @@ export function markdownToHtml(markdown: string): string {
         processed.push(listType === "ul" ? "</ul>" : "</ol>");
         inList = false;
       }
+      if (inTable) {
+        processed.push("</tbody></table>");
+        inTable = false;
+        tableHeaders = [];
+      }
       processed.push(trimmedLine);
       continue;
     }
@@ -269,8 +291,65 @@ export function markdownToHtml(markdown: string): string {
         processed.push(listType === "ul" ? "</ul>" : "</ol>");
         inList = false;
       }
+      if (inTable) {
+        processed.push("</tbody></table>");
+        inTable = false;
+        tableHeaders = [];
+      }
       processed.push(trimmedLine);
       continue;
+    }
+
+    // Tables - Detect header row (contains |)
+    if (
+      trimmedLine.includes("|") &&
+      !inTable &&
+      !trimmedLine.match(/^\s*[-:|]+\s*$/)
+    ) {
+      // This might be a table header
+      const cells = trimmedLine
+        .split("|")
+        .map((cell) => cell.trim())
+        .filter((cell) => cell.length > 0);
+
+      // Check if next line is separator
+      if (
+        i + 1 < lines.length &&
+        lines[i + 1].trim().match(/^\|?\s*[-:|]+\s*\|?\s*[-:|]+/)
+      ) {
+        if (inList) {
+          processed.push(listType === "ul" ? "</ul>" : "</ol>");
+          inList = false;
+        }
+        tableHeaders = cells;
+        processed.push("<table>");
+        processed.push("<thead><tr>");
+        cells.forEach((cell) => {
+          processed.push(`<th>${processInline(cell)}</th>`);
+        });
+        processed.push("</tr></thead>");
+        processed.push("<tbody>");
+        inTable = true;
+        i++; // Skip separator line
+        continue;
+      }
+    }
+
+    // Table row
+    if (inTable && trimmedLine.includes("|")) {
+      const cells = trimmedLine
+        .split("|")
+        .map((cell) => cell.trim())
+        .filter((cell) => cell.length > 0);
+
+      if (cells.length > 0) {
+        processed.push("<tr>");
+        cells.forEach((cell) => {
+          processed.push(`<td>${processInline(cell)}</td>`);
+        });
+        processed.push("</tr>");
+        continue;
+      }
     }
 
     // Headings
@@ -278,6 +357,11 @@ export function markdownToHtml(markdown: string): string {
       if (inList) {
         processed.push(listType === "ul" ? "</ul>" : "</ol>");
         inList = false;
+      }
+      if (inTable) {
+        processed.push("</tbody></table>");
+        inTable = false;
+        tableHeaders = [];
       }
       const level = trimmedLine.match(/^(#{1,6})\s+/)?.[1].length || 1;
       const content = trimmedLine.replace(/^#{1,6}\s+/, "");
@@ -317,6 +401,11 @@ export function markdownToHtml(markdown: string): string {
         processed.push(listType === "ul" ? "</ul>" : "</ol>");
         inList = false;
       }
+      if (inTable) {
+        processed.push("</tbody></table>");
+        inTable = false;
+        tableHeaders = [];
+      }
       const content = trimmedLine.replace(/^>\s*/, "");
       processed.push(`<blockquote>${processInline(content)}</blockquote>`);
       continue;
@@ -327,12 +416,20 @@ export function markdownToHtml(markdown: string): string {
       processed.push(listType === "ul" ? "</ul>" : "</ol>");
       inList = false;
     }
+    if (inTable) {
+      processed.push("</tbody></table>");
+      inTable = false;
+      tableHeaders = [];
+    }
     processed.push(`<p>${processInline(trimmedLine)}</p>`);
   }
 
-  // Close any open list
+  // Close any open list or table
   if (inList) {
     processed.push(listType === "ul" ? "</ul>" : "</ol>");
+  }
+  if (inTable) {
+    processed.push("</tbody></table>");
   }
 
   return processed.join("\n");

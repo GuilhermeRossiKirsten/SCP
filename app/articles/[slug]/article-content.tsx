@@ -54,7 +54,7 @@ export default function ArticleContent({
         <span class="copy-text text-xs font-semibold">Copiar</span>
       `;
 
-      const handleCopy = async (btn: HTMLElement) => {
+      const handleCopy = async () => {
         const decodedCode = code
           .replace(/&quot;/g, '"')
           .replace(/&#39;/g, "'")
@@ -98,7 +98,7 @@ export default function ArticleContent({
         }
       };
 
-      button.addEventListener("click", () => handleCopy(button));
+      button.addEventListener("click", handleCopy);
 
       block.appendChild(button);
     });
