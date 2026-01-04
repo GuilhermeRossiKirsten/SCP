@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { Search, X, Filter, ChevronDown, ChevronUp } from "lucide-react";
-import { Input } from "@/components/ui/input";
 
 interface ArticlesFiltersProps {
   onSearchChange: (search: string) => void;
@@ -28,11 +27,6 @@ export function ArticlesFilters({
     }
   };
 
-  const clearAllFilters = () => {
-    setSearchInput("");
-    onTagsSelect([]);
-  };
-
   // Debounce search
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -44,40 +38,40 @@ export function ArticlesFilters({
 
   return (
     <div className="space-y-4">
-      {/* Compact Search Bar with Filter Button */}
+      {/* Search Bar with Filter Button */}
       <div className="flex gap-3">
         <div className="relative group flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 group-focus-within:text-green-400 transition-colors" />
-          <Input
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-lorenzo-light/40 group-focus-within:text-lorenzo-accent transition-colors" />
+          <input
             type="text"
             placeholder="Buscar artigos..."
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
-            className="pl-10 pr-10 h-11 bg-zinc-900/50 border-zinc-800 focus:border-green-500 focus:ring-2 focus:ring-green-500/20 transition-all text-white placeholder:text-gray-500 rounded-lg"
+            className="w-full pl-11 pr-10 py-3 bg-lorenzo-light/5 border-2 border-transparent focus:border-lorenzo-accent focus:outline-none transition-all text-lorenzo-light placeholder:text-lorenzo-light/30 text-sm"
           />
           {searchInput && (
             <button
               onClick={() => setSearchInput("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-green-400 transition-colors p-1 hover:bg-green-500/10 rounded"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-lorenzo-light/40 hover:text-lorenzo-accent transition-colors p-1 hover:bg-lorenzo-accent/10"
             >
               <X className="w-3.5 h-3.5" />
             </button>
           )}
         </div>
 
-        {/* Filter Dropdown Button */}
+        {/* Filter Button */}
         {availableTags.length > 0 && (
           <button
             onClick={() => setIsFilterOpen(!isFilterOpen)}
-            className={`flex items-center gap-2 px-4 h-11 rounded-lg text-sm font-semibold transition-all ${
+            className={`flex items-center gap-2 px-5 py-3 text-xs font-bold uppercase tracking-wider transition-all ${
               selectedTags.length > 0 || isFilterOpen
-                ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg shadow-green-500/30"
-                : "bg-zinc-900/50 border border-zinc-800 text-gray-300 hover:border-green-500/50 hover:text-green-400"
+                ? "bg-lorenzo-accent text-lorenzo-dark"
+                : "bg-lorenzo-light/5 text-lorenzo-light/60 hover:bg-lorenzo-light/10 hover:text-lorenzo-accent"
             }`}
           >
             <Filter className="w-4 h-4" />
             {selectedTags.length > 0 && (
-              <span className="flex items-center justify-center min-w-[1.25rem] h-5 bg-white/20 rounded-full text-xs font-bold">
+              <span className="flex items-center justify-center min-w-[1.25rem] h-5 bg-lorenzo-dark/20 text-xs font-bold">
                 {selectedTags.length}
               </span>
             )}
@@ -92,12 +86,12 @@ export function ArticlesFilters({
 
       {/* Collapsible Tags Filter */}
       {isFilterOpen && availableTags.length > 0 && (
-        <div className="space-y-3 bg-zinc-900/30 border border-zinc-800 rounded-lg p-4 animate-in slide-in-from-top-2">
+        <div className="space-y-4 bg-lorenzo-light/5 p-5">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-sm font-medium text-gray-400">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-lorenzo-light/60">
               <span>Categorias</span>
               {selectedTags.length > 0 && (
-                <span className="text-green-400">
+                <span className="text-lorenzo-accent">
                   ({selectedTags.length} selecionadas)
                 </span>
               )}
@@ -105,9 +99,9 @@ export function ArticlesFilters({
             {selectedTags.length > 0 && (
               <button
                 onClick={() => onTagsSelect([])}
-                className="text-xs text-gray-400 hover:text-green-400 transition-colors font-medium"
+                className="text-xs text-lorenzo-light/40 hover:text-lorenzo-accent transition-colors font-bold uppercase tracking-wider"
               >
-                Limpar seleção
+                Limpar
               </button>
             )}
           </div>
@@ -118,10 +112,10 @@ export function ArticlesFilters({
                 <button
                   key={tag}
                   onClick={() => handleTagToggle(tag)}
-                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                  className={`px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${
                     isSelected
-                      ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg shadow-green-500/30"
-                      : "bg-zinc-900/50 border border-zinc-800 text-gray-300 hover:border-green-500/50 hover:text-green-400 hover:bg-green-500/5"
+                      ? "bg-lorenzo-accent text-lorenzo-dark"
+                      : "bg-lorenzo-light/5 text-lorenzo-light/60 hover:bg-lorenzo-light/10 hover:text-lorenzo-accent"
                   }`}
                 >
                   {tag}
@@ -134,24 +128,32 @@ export function ArticlesFilters({
 
       {/* Active Filters Indicator */}
       {(searchInput || selectedTags.length > 0) && (
-        <div className="flex items-center justify-between gap-3 text-sm bg-green-500/5 border border-green-500/20 rounded-lg px-4 py-3">
+        <div className="flex items-center justify-between gap-3 text-sm bg-lorenzo-accent/10 px-4 py-3">
           <div className="flex items-center gap-3 flex-wrap">
-            <span className="text-gray-400 font-medium">Filtros ativos:</span>
+            <span className="text-lorenzo-light/60 font-bold text-xs uppercase tracking-wider">
+              Filtros ativos:
+            </span>
             <div className="flex flex-wrap gap-2">
               {searchInput && (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-500/10 text-green-400 rounded-md border border-green-500/30 font-medium">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-lorenzo-accent/20 text-lorenzo-accent text-xs font-bold uppercase tracking-wider">
                   Busca: "{searchInput}"
+                  <button
+                    onClick={() => setSearchInput("")}
+                    className="hover:text-lorenzo-light transition-colors"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
                 </span>
               )}
               {selectedTags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-500/10 text-green-400 rounded-md border border-green-500/30 font-medium"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 bg-lorenzo-accent/20 text-lorenzo-accent text-xs font-bold uppercase tracking-wider"
                 >
                   {tag}
                   <button
                     onClick={() => handleTagToggle(tag)}
-                    className="hover:text-green-300 transition-colors"
+                    className="hover:text-lorenzo-light transition-colors"
                   >
                     <X className="w-3 h-3" />
                   </button>
@@ -160,10 +162,13 @@ export function ArticlesFilters({
             </div>
           </div>
           <button
-            onClick={clearAllFilters}
-            className="text-xs text-gray-400 hover:text-green-400 transition-colors font-medium whitespace-nowrap"
+            onClick={() => {
+              setSearchInput("");
+              onTagsSelect([]);
+            }}
+            className="text-xs text-lorenzo-accent hover:text-lorenzo-light transition-colors font-bold uppercase tracking-wider whitespace-nowrap"
           >
-            Limpar tudo
+            Limpar Tudo
           </button>
         </div>
       )}

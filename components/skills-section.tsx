@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   Code2,
   Server,
@@ -15,91 +14,130 @@ const skillCategories = [
     title: "Linguagens",
     icon: Code2,
     skills: ["C++", "Golang", "Python", "Java", "JavaScript", "TypeScript"],
-    color: "from-green-500 to-teal-500",
+    featured: false,
   },
   {
     title: "Frameworks",
     icon: Server,
     skills: ["React", "Next.js", "Spring", "Node.js"],
-    color: "from-emerald-500 to-lime-500",
+    featured: false,
   },
   {
     title: "DevOps",
     icon: GitBranch,
     skills: ["Docker", "Kubernetes", "CI/CD", "GitHub Actions"],
-    color: "from-green-500 to-emerald-500",
+    featured: false,
   },
   {
     title: "Cloud",
     icon: Cloud,
     skills: ["Azure", "Oracle Cloud", "AWS"],
-    color: "from-orange-500 to-red-500",
+    featured: false,
   },
   {
     title: "Segurança",
     icon: Shield,
     skills: ["Criptografia", "Certificados", "LGPD", "Hacking Ético"],
-    color: "from-red-500 to-rose-500",
+    featured: false,
   },
   {
     title: "Banco de Dados",
     icon: Database,
     skills: ["PostgreSQL", "Oracle DB", "MongoDB", "Redis"],
-    color: "from-green-600 to-teal-600",
+    featured: false,
   },
 ];
 
 export function SkillsSection() {
   return (
-    <section className="py-20 px-4 bg-gray-900">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
-            Habilidades Técnicas
-          </h2>
-          <p className="text-gray-400 text-lg">
-            Tecnologias e ferramentas que domino
-          </p>
-        </motion.div>
+    <section
+      id="skills"
+      data-theme="dark"
+      className="relative py-24 md:py-32 px-6 md:px-12 bg-[#0f0f10]"
+    >
+      {/* Accent stripe */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-lorenzo-accent/30 to-transparent" />
 
+      <div className="max-w-[1400px] mx-auto">
+        {/* Header */}
+        <div className="mb-16">
+          <span className="text-lorenzo-accent text-xs tracking-[0.3em] uppercase font-bold mb-4 block">
+            Expertise
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-lorenzo-light uppercase tracking-tight leading-[1.1]">
+            Stack
+            <br />
+            <span className="text-lorenzo-accent font-brier italic">
+              Tecnológica
+            </span>
+          </h2>
+        </div>
+
+        {/* Skills Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category, index) => (
-            <motion.div
+            <div
               key={category.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 border border-gray-700 hover:border-gray-600 transition-all"
+              className={`group relative p-6 transition-all duration-300 cursor-default ${
+                category.featured
+                  ? "bg-lorenzo-accent"
+                  : "bg-lorenzo-light/5 hover:bg-lorenzo-light/10"
+              }`}
             >
-              <div
-                className={`w-12 h-12 rounded-lg bg-gradient-to-r ${category.color} flex items-center justify-center mb-4`}
+              {/* Index number */}
+              <span
+                className={`absolute top-4 right-4 text-xs font-bold tracking-wider ${
+                  category.featured
+                    ? "text-lorenzo-dark/40"
+                    : "text-lorenzo-light/20"
+                }`}
               >
-                <category.icon className="w-6 h-6 text-white" />
+                0{index + 1}
+              </span>
+
+              {/* Icon */}
+              <div
+                className={`w-14 h-14 flex items-center justify-center mb-5 ${
+                  category.featured
+                    ? "bg-lorenzo-dark/10"
+                    : "bg-lorenzo-accent/10 group-hover:bg-lorenzo-accent/20"
+                } transition-colors duration-300`}
+              >
+                <category.icon
+                  size={28}
+                  className={
+                    category.featured
+                      ? "text-lorenzo-dark"
+                      : "text-lorenzo-accent"
+                  }
+                />
               </div>
 
-              <h3 className="text-xl font-semibold text-white mb-4">
+              {/* Title */}
+              <h3
+                className={`text-xl font-bold uppercase tracking-wide mb-4 ${
+                  category.featured ? "text-lorenzo-dark" : "text-lorenzo-light"
+                }`}
+              >
                 {category.title}
               </h3>
 
+              {/* Skills Tags */}
               <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1 bg-gray-700/50 text-gray-300 rounded-full text-sm border border-gray-600"
+                    className={`px-3 py-1.5 text-xs font-semibold uppercase tracking-wide transition-colors duration-300 ${
+                      category.featured
+                        ? "bg-lorenzo-dark/10 text-lorenzo-dark"
+                        : "bg-lorenzo-light/5 text-lorenzo-light/60 group-hover:bg-lorenzo-accent/20 group-hover:text-lorenzo-accent"
+                    }`}
                   >
                     {skill}
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

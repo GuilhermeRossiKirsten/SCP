@@ -4,13 +4,13 @@ import { useEffect, useState, useMemo } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "@/components/ui/card";
-import { Calendar, ArrowRight, Tag, FileText, AlertCircle } from "lucide-react";
+  Calendar,
+  ArrowRight,
+  ArrowLeft,
+  Tag,
+  FileText,
+  AlertCircle,
+} from "lucide-react";
 import { FormattedDate } from "@/components/formatted-date";
 import { ArticlesGridSkeleton } from "@/components/article-skeleton";
 import { ArticlesFilters } from "@/components/articles-filters";
@@ -55,18 +55,16 @@ export default function ArticlesPage() {
     fetchAllArticles();
   }, []);
 
-  // Filtrar artigos no lado do cliente (evita requisições desnecessárias)
+  // Filtrar artigos no lado do cliente
   useEffect(() => {
     let filtered = allArticles;
 
-    // Filtrar por busca
     if (searchQuery) {
       filtered = filtered.filter((article) =>
         article.title.toLowerCase().includes(searchQuery.toLowerCase()),
       );
     }
 
-    // Filtrar por tags (deve ter TODAS as tags selecionadas)
     if (selectedTags.length > 0) {
       filtered = filtered.filter((article) =>
         selectedTags.every((selectedTag) =>
@@ -78,7 +76,7 @@ export default function ArticlesPage() {
     setFilteredArticles(filtered);
   }, [allArticles, searchQuery, selectedTags]);
 
-  // Extrair todas as tags disponíveis (sempre baseado em TODOS os artigos)
+  // Extrair todas as tags disponíveis
   const availableTags = useMemo(() => {
     const tagsSet = new Set<string>();
     allArticles.forEach((article) => {
@@ -87,31 +85,39 @@ export default function ArticlesPage() {
     return Array.from(tagsSet).sort();
   }, [allArticles]);
 
-  // Loading state com skeleton
+  // Loading state
   if (loading && allArticles.length === 0) {
     return (
-      <main className="min-h-screen bg-black text-white relative overflow-hidden">
-        {/* Animated background particles effect */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-green-500/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+      <main className="min-h-screen bg-lorenzo-dark text-lorenzo-light relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `radial-gradient(circle at 2px 2px, rgba(200, 245, 80, 0.3) 1px, transparent 0)`,
+              backgroundSize: "40px 40px",
+            }}
+          />
         </div>
 
-        <div className="container mx-auto px-4 py-20 max-w-7xl relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 bg-clip-text text-transparent">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-24 md:py-32 relative z-10">
+          {/* Header */}
+          <div className="mb-16">
+            <span className="text-lorenzo-accent text-xs tracking-[0.3em] uppercase font-bold mb-4 block">
+              Blog
+            </span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-lorenzo-light uppercase tracking-tight leading-[1.1] mb-6">
               Artigos
+              <br />
+              <span className="text-lorenzo-accent font-brier italic">
+                & Tutoriais
+              </span>
             </h1>
-            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+            <p className="text-lorenzo-light/60 text-lg max-w-xl">
               Pensamentos, tutoriais e insights sobre desenvolvimento, segurança
               e tecnologia.
             </p>
-          </motion.div>
+          </div>
 
           <ArticlesGridSkeleton />
         </div>
@@ -120,83 +126,93 @@ export default function ArticlesPage() {
   }
 
   return (
-    <main className="min-h-screen bg-black text-white relative overflow-hidden">
-      {/* Animated background particles effect */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-green-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+    <main className="min-h-screen bg-lorenzo-dark text-lorenzo-light relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, rgba(200, 245, 80, 0.3) 1px, transparent 0)`,
+            backgroundSize: "40px 40px",
+          }}
+        />
       </div>
 
-      <div className="container mx-auto px-4 py-20 max-w-7xl relative z-10">
-        {/* Header - Centralizado */}
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-24 md:py-32 relative z-10">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 bg-clip-text text-transparent">
-            Artigos
-          </h1>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-8">
+          <span className="text-lorenzo-accent text-xs tracking-[0.3em] uppercase font-bold mb-4 block">
+            Blog
+          </span>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-lorenzo-light uppercase tracking-tight leading-[1.1]">
+              Artigos
+              <br />
+              <span className="text-lorenzo-accent font-brier italic">
+                & Tutoriais
+              </span>
+            </h1>
+            <div className="flex items-center gap-6 text-sm">
+              <div className="flex items-center gap-2">
+                <FileText className="w-4 h-4 text-lorenzo-accent" />
+                <span className="text-lorenzo-light/60">
+                  {allArticles.length}{" "}
+                  {allArticles.length === 1 ? "artigo" : "artigos"}
+                </span>
+              </div>
+              {availableTags.length > 0 && (
+                <div className="flex items-center gap-2">
+                  <Tag className="w-4 h-4 text-lorenzo-accent" />
+                  <span className="text-lorenzo-light/60">
+                    {availableTags.length}{" "}
+                    {availableTags.length === 1 ? "tag" : "tags"}
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+          <p className="text-lorenzo-light/60 text-lg max-w-xl">
             Pensamentos, tutoriais e insights sobre desenvolvimento, segurança e
             tecnologia.
           </p>
-
-          {/* Stats */}
-          <div className="flex items-center justify-center gap-8 text-sm">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              <span className="text-gray-400">
-                {allArticles.length}{" "}
-                {allArticles.length === 1 ? "artigo" : "artigos"}
-              </span>
-            </div>
-            {availableTags.length > 0 && (
-              <div className="flex items-center gap-2">
-                <Tag className="w-4 h-4 text-green-400" />
-                <span className="text-gray-400">
-                  {availableTags.length}{" "}
-                  {availableTags.length === 1 ? "tag" : "tags"}
-                </span>
-              </div>
-            )}
-          </div>
         </motion.div>
 
-        {/* Filters - Centralizado em um card destacado */}
+        {/* Filters */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-16"
+          className="mb-12"
         >
-          <div className="bg-gradient-to-br from-zinc-900/80 to-black/80 border border-zinc-800/50 rounded-2xl p-6 backdrop-blur-sm shadow-2xl">
-            <ArticlesFilters
-              onSearchChange={setSearchQuery}
-              onTagsSelect={setSelectedTags}
-              selectedTags={selectedTags}
-              availableTags={availableTags}
-            />
-          </div>
+          <ArticlesFilters
+            onSearchChange={setSearchQuery}
+            onTagsSelect={setSelectedTags}
+            selectedTags={selectedTags}
+            availableTags={availableTags}
+          />
         </motion.div>
 
-        {/* Results counter with better styling */}
+        {/* Results counter */}
         {(searchQuery || selectedTags.length > 0) && !loading && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="mb-8 flex items-center justify-between flex-wrap gap-4 px-4"
+            className="mb-8 flex items-center justify-between flex-wrap gap-4"
           >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center justify-center">
-                <FileText className="w-5 h-5 text-green-400" />
+              <div className="w-10 h-10 bg-lorenzo-accent/10 flex items-center justify-center">
+                <FileText className="w-5 h-5 text-lorenzo-accent" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">
+                <p className="text-2xl font-black text-lorenzo-light">
                   {filteredArticles.length}
                 </p>
-                <p className="text-sm text-gray-400">
+                <p className="text-sm text-lorenzo-light/40">
                   {filteredArticles.length === 1
                     ? "Artigo encontrado"
                     : "Artigos encontrados"}
@@ -206,8 +222,8 @@ export default function ArticlesPage() {
 
             {filteredArticles.length < allArticles.length && (
               <div className="flex items-center gap-3 text-sm">
-                <span className="text-gray-500">Mostrando</span>
-                <span className="px-3 py-1 bg-green-500/10 text-green-400 rounded-lg border border-green-500/20 font-semibold">
+                <span className="text-lorenzo-light/40">Mostrando</span>
+                <span className="px-3 py-1 bg-lorenzo-accent text-lorenzo-dark font-bold">
                   {filteredArticles.length} de {allArticles.length}
                 </span>
               </div>
@@ -226,19 +242,19 @@ export default function ArticlesPage() {
               transition={{ duration: 0.3 }}
               className="text-center py-20"
             >
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-500/10 mb-8 border border-green-500/20">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-lorenzo-accent/10 mb-8">
                 {searchQuery || selectedTags.length > 0 ? (
-                  <AlertCircle className="w-10 h-10 text-green-400" />
+                  <AlertCircle className="w-10 h-10 text-lorenzo-accent" />
                 ) : (
-                  <FileText className="w-10 h-10 text-green-400" />
+                  <FileText className="w-10 h-10 text-lorenzo-accent" />
                 )}
               </div>
-              <h3 className="text-2xl font-semibold mb-4 text-white">
+              <h3 className="text-2xl font-black uppercase mb-4 text-lorenzo-light">
                 {searchQuery || selectedTags.length > 0
                   ? "Nenhum artigo encontrado"
                   : "Nenhum artigo publicado ainda"}
               </h3>
-              <p className="text-gray-400 mb-8 max-w-md mx-auto text-base">
+              <p className="text-lorenzo-light/40 mb-8 max-w-md mx-auto">
                 {searchQuery || selectedTags.length > 0
                   ? "Tente ajustar seus filtros de busca ou limpar os filtros para ver todos os artigos."
                   : "Volte em breve para conferir novos conteúdos sobre tecnologia e desenvolvimento!"}
@@ -249,7 +265,7 @@ export default function ArticlesPage() {
                     setSearchQuery("");
                     setSelectedTags([]);
                   }}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-all shadow-lg shadow-green-500/20 hover:shadow-green-500/30"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-lorenzo-accent text-lorenzo-dark font-bold uppercase tracking-wider text-sm hover:bg-lorenzo-light transition-all duration-300"
                 >
                   Limpar filtros
                 </button>
@@ -262,7 +278,7 @@ export default function ArticlesPage() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="grid gap-8 md:grid-cols-2 xl:grid-cols-3"
+              className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
             >
               {filteredArticles.map((article, index) => (
                 <motion.div
@@ -273,68 +289,61 @@ export default function ArticlesPage() {
                 >
                   <Link
                     href={`/articles/${article.slug}`}
-                    className="h-full block"
+                    className="h-full block group"
                   >
-                    <Card className="h-full min-h-[420px] transition-all duration-300 hover:border-green-500 hover:shadow-2xl hover:shadow-green-500/20 hover:-translate-y-1 cursor-pointer group bg-gradient-to-br from-zinc-900/50 to-black/50 backdrop-blur-sm border-zinc-800 flex flex-col">
-                      <CardHeader className="space-y-4 pb-4 flex-shrink-0">
-                        {/* Metadata */}
-                        <div className="flex flex-wrap items-center gap-2 text-xs">
-                          {article.date && (
-                            <div className="flex items-center gap-1.5 bg-green-500/5 px-2.5 py-1.5 rounded-md border border-green-500/10">
-                              <Calendar className="w-3 h-3 text-green-400" />
-                              <FormattedDate date={article.date} />
-                            </div>
-                          )}
-                          {article.author && (
-                            <span className="text-gray-500 font-medium">
-                              {article.author}
+                    <article className="h-full min-h-[320px] bg-lorenzo-light/5 p-6 hover:bg-lorenzo-accent transition-all duration-300 flex flex-col">
+                      {/* Metadata */}
+                      <div className="flex flex-wrap items-center gap-3 mb-4">
+                        {article.date && (
+                          <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-lorenzo-accent bg-lorenzo-accent/10 px-2 py-1 group-hover:bg-lorenzo-dark/30 group-hover:text-lorenzo-dark transition-colors">
+                            <Calendar className="w-3 h-3" />
+                            <FormattedDate date={article.date} />
+                          </div>
+                        )}
+                        {article.author && (
+                          <span className="text-[10px] text-lorenzo-light/40 font-semibold uppercase tracking-wide group-hover:text-lorenzo-dark transition-colors">
+                            {article.author}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Title */}
+                      <h2 className="text-xl font-bold text-lorenzo-light mb-3 leading-tight group-hover:text-lorenzo-dark transition-colors line-clamp-2">
+                        {article.title}
+                      </h2>
+
+                      {/* Description */}
+                      <p className="text-sm text-lorenzo-light/50 leading-relaxed line-clamp-3 mb-4 flex-grow group-hover:text-lorenzo-dark transition-colors">
+                        {article.description}
+                      </p>
+
+                      {/* Tags */}
+                      {article.tags && article.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-1 mb-4">
+                          {article.tags.slice(0, 3).map((tag) => (
+                            <span
+                              key={tag}
+                              className="text-[10px] px-2 py-1 bg-lorenzo-light/5 text-lorenzo-light/50 font-semibold uppercase tracking-wide group-hover:bg-lorenzo-dark/20 group-hover:text-lorenzo-dark transition-colors"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                          {article.tags.length > 3 && (
+                            <span className="text-[10px] px-2 py-1 text-lorenzo-light/30 font-semibold group-hover:text-lorenzo-dark transition-colors">
+                              +{article.tags.length - 3}
                             </span>
                           )}
                         </div>
+                      )}
 
-                        {/* Title */}
-                        <CardTitle className="text-xl md:text-2xl group-hover:text-green-400 transition-colors leading-tight font-bold line-clamp-2 min-h-[3.5rem]">
-                          {article.title}
-                        </CardTitle>
-                      </CardHeader>
-
-                      <CardContent className="flex flex-col flex-grow pt-0 pb-6">
-                        <div className="space-y-4 flex-grow">
-                          {/* Description */}
-                          <CardDescription className="text-sm leading-relaxed line-clamp-3 text-gray-400 min-h-[4rem]">
-                            {article.description}
-                          </CardDescription>
-
-                          {/* Tags */}
-                          {article.tags && article.tags.length > 0 && (
-                            <div className="flex flex-wrap gap-1.5 min-h-[2rem] content-start">
-                              {article.tags.slice(0, 3).map((tag) => (
-                                <span
-                                  key={tag}
-                                  className="inline-flex items-center gap-1 px-2 py-1 bg-green-500/10 text-green-400 text-xs font-medium rounded-md border border-green-500/20 h-fit"
-                                >
-                                  <Tag className="w-2.5 h-2.5" />
-                                  {tag}
-                                </span>
-                              ))}
-                              {article.tags.length > 3 && (
-                                <span className="inline-flex items-center px-2 py-1 text-gray-500 text-xs font-medium h-fit">
-                                  +{article.tags.length - 3}
-                                </span>
-                              )}
-                            </div>
-                          )}
-                        </div>
-
-                        {/* Read More Link - Always at bottom */}
-                        <div className="flex items-center gap-2 text-green-400 group-hover:gap-3 transition-all pt-6 mt-auto border-t border-zinc-800 flex-shrink-0">
-                          <span className="text-xs font-semibold uppercase tracking-wider">
-                            Ler artigo
-                          </span>
-                          <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                        </div>
-                      </CardContent>
-                    </Card>
+                      {/* Read More */}
+                      <div className="flex items-center gap-2 group-hover:text-black transition-colors mt-auto pt-4 border-t border-lorenzo-light/10 group-hover:border-lorenzo-dark/30">
+                        <span className="text-xs font-bold uppercase tracking-wider">
+                          Ler artigo
+                        </span>
+                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </article>
                   </Link>
                 </motion.div>
               ))}
@@ -347,14 +356,16 @@ export default function ArticlesPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="mt-24 text-center"
+          className="mt-20 text-center"
         >
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-gray-400 hover:text-green-400 transition-colors group"
+            className="inline-flex items-center gap-2 text-lorenzo-light/40 hover:text-lorenzo-accent transition-colors group"
           >
-            <ArrowRight className="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" />
-            <span className="font-medium">Voltar para o início</span>
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            <span className="font-bold uppercase tracking-wider text-sm">
+              Voltar para o início
+            </span>
           </Link>
         </motion.div>
       </div>

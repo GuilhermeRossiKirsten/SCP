@@ -6,11 +6,11 @@ import { Briefcase, MapPin } from "lucide-react";
 const experiences = [
   {
     company: "Management Solutions",
-    role: "Engenheiro de dados",
+    role: "Engenheiro de Dados",
     period: "Set/2025 – Presente",
     location: "São Paulo, SP",
     description:
-      "desenvolvimento e manutenção de pipelines de dados, realizando a extração, transformação e carga (ETL) de grandes volumes de informações provenientes de múltiplas fontes. Atuo no cruzamento e integração de dados para suporte à análise e tomada de decisão. Utilizo ferramentas e linguagens como SQL, Python, PySpark, Databricks, Pandas e NumPy, aplicando boas práticas de engenharia de dados para garantir a qualidade, integridade e eficiência no processamento.",
+      "Desenvolvimento e manutenção de pipelines de dados, realizando ETL de grandes volumes de informações. Atuo no cruzamento e integração de dados para suporte à análise e tomada de decisão.",
     technologies: [
       "PySpark",
       "CI/CD",
@@ -19,6 +19,7 @@ const experiences = [
       "Big Data",
       "Delta Lake",
     ],
+    current: true,
   },
   {
     company: "Eval Digital",
@@ -26,120 +27,188 @@ const experiences = [
     period: "Out/2024 – Set/2025",
     location: "São Paulo, SP",
     description:
-      "Desenvolvimento e manutenção de sistemas para o Banco Central (PIX e SFN). Implementação de testes unitários, otimização de desempenho e detecção de memory leaks. Uso de Docker, Kubernetes e bancos Oracle, SQL Server e MySQL. Aplicação de soluções compatíveis com LGPD e segurança de dados.",
-    technologies: [
-      "C++",
-      "Java",
-      "NextJs",
-      "Docker",
-      "Kubernetes",
-      "Oracle",
-      "SQL Server",
-      "MySQL",
-      "LGPD",
-    ],
+      "Desenvolvimento e manutenção de sistemas para o Banco Central (PIX e SFN). Implementação de testes unitários, otimização de desempenho e detecção de memory leaks.",
+    technologies: ["C++", "Java", "NextJs", "Docker", "Kubernetes", "Oracle"],
+    current: false,
   },
   {
-    company: "Eval Digital Soluções Ágeis e Criptografia de Sistemas",
-    role: "Estagiário em Criptografia e Segurança",
+    company: "Eval Digital",
+    role: "Estagiário em Criptografia",
     period: "Set/2022 – Nov/2024",
     location: "São Paulo, SP",
     description:
-      "Participação em projetos de criptografia de ponta a ponta e proteção de dados. Responsável por documentação técnica e análise de requisitos junto a clientes. Apoio no desenvolvimento de sistemas de alta disponibilidade.",
-    technologies: [
-      "Criptografia",
-      "Segurança",
-      "Documentação Técnica",
-      "Linux",
-    ],
+      "Participação em projetos de criptografia de ponta a ponta e proteção de dados. Documentação técnica e análise de requisitos junto a clientes.",
+    technologies: ["Criptografia", "Segurança", "Linux", "HSM"],
+    current: false,
   },
 ];
 
 export function TimelineSection() {
   return (
-    <section className="py-20 px-4 bg-black">
-      <div className="max-w-5xl mx-auto">
+    <section
+      id="experience"
+      data-theme="dark"
+      className="relative py-24 md:py-32 px-6 md:px-12 bg-[#0a0a0a]"
+    >
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.03]">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `repeating-linear-gradient(
+              -45deg,
+              #c8f550,
+              #c8f550 1px,
+              transparent 1px,
+              transparent 10px
+            )`,
+          }}
+        />
+      </div>
+
+      <div className="max-w-[1200px] mx-auto relative z-10">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
-            Experiência Profissional
+          <span className="text-lorenzo-accent text-xs tracking-[0.3em] uppercase font-bold mb-4 block">
+            Carreira
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-lorenzo-light uppercase tracking-tight leading-[1.1]">
+            Experiência
+            <br />
+            <span className="text-lorenzo-accent font-brier italic">
+              Profissional
+            </span>
           </h2>
-          <p className="text-gray-400 text-lg">
-            Minha trajetória no desenvolvimento de software
-          </p>
         </motion.div>
 
+        {/* Timeline */}
         <div className="relative">
+          {/* Vertical Line */}
           <motion.div
-            initial={{ height: 0 }}
-            whileInView={{ height: "100%" }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="absolute left-8 top-0 w-0.5 bg-gradient-to-b from-green-500 via-emerald-500 to-lime-500"
+            className="absolute left-6 md:left-8 top-0 bottom-0 w-[2px] bg-lorenzo-light/10 origin-top"
           />
 
-          <div className="space-y-12">
+          <div className="space-y-8">
             {experiences.map((exp, index) => (
               <motion.div
-                key={exp.company}
-                initial={{ opacity: 0, x: -50 }}
+                key={exp.company + exp.role}
+                initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
                 viewport={{ once: true }}
-                className="relative pl-20"
+                className="relative pl-16 md:pl-24"
               >
+                {/* Timeline Dot */}
                 <motion.div
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.2 + 0.3 }}
+                  transition={{ duration: 0.4, delay: index * 0.15 + 0.2 }}
                   viewport={{ once: true }}
-                  className="absolute left-0 w-16 h-16 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center border-4 border-black shadow-lg shadow-green-500/50"
+                  className={`absolute left-0 w-12 md:w-16 h-12 md:h-16 flex items-center justify-center ${
+                    exp.current ? "bg-lorenzo-accent" : "bg-lorenzo-light/10"
+                  }`}
                 >
-                  <Briefcase className="w-8 h-8 text-white" />
+                  <Briefcase
+                    size={24}
+                    className={
+                      exp.current
+                        ? "text-lorenzo-dark"
+                        : "text-lorenzo-light/60"
+                    }
+                  />
                 </motion.div>
 
+                {/* Card */}
                 <motion.div
-                  whileHover={{
-                    scale: 1.02,
-                    boxShadow: "0 0 30px rgba(34, 197, 94, 0.3)",
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 border border-gray-700 hover:border-green-500/50 transition-colors"
+                  whileHover={{ x: 8 }}
+                  transition={{ duration: 0.2 }}
+                  className={`group p-6 md:p-8 transition-all duration-300 ${
+                    exp.current
+                      ? "bg-lorenzo-accent"
+                      : "bg-lorenzo-light/5 hover:bg-lorenzo-light/10"
+                  }`}
                 >
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3 gap-2">
+                  {/* Header */}
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-4">
                     <div>
-                      <h3 className="text-2xl font-bold text-white mb-1">
+                      {exp.current && (
+                        <span className="inline-block text-xs font-bold uppercase tracking-wider text-lorenzo-dark/60 mb-2">
+                          Atual
+                        </span>
+                      )}
+                      <h3
+                        className={`text-xl md:text-2xl font-bold uppercase tracking-wide ${
+                          exp.current
+                            ? "text-lorenzo-dark"
+                            : "text-lorenzo-light"
+                        }`}
+                      >
                         {exp.company}
                       </h3>
-                      <p className="text-green-400 font-semibold text-lg">
+                      <p
+                        className={`font-semibold text-lg ${
+                          exp.current
+                            ? "text-lorenzo-dark/80"
+                            : "text-lorenzo-light/60"
+                        }`}
+                      >
                         {exp.role}
                       </p>
                     </div>
-                    <div className="flex flex-col items-start md:items-end gap-1">
-                      <span className="text-sm text-gray-400 bg-gray-700/50 px-3 py-1 rounded-full">
+                    <div className="flex flex-col items-start md:items-end gap-2">
+                      <span
+                        className={`text-sm font-bold tracking-wide px-3 py-1 ${
+                          exp.current
+                            ? "bg-lorenzo-dark/10 text-lorenzo-dark"
+                            : "bg-lorenzo-light/10 text-lorenzo-light/60"
+                        }`}
+                      >
                         {exp.period}
                       </span>
-                      <div className="flex items-center gap-1 text-gray-500 text-sm">
-                        <MapPin className="w-3 h-3" />
+                      <div
+                        className={`flex items-center gap-1 text-sm ${
+                          exp.current
+                            ? "text-lorenzo-dark/60"
+                            : "text-lorenzo-light/40"
+                        }`}
+                      >
+                        <MapPin size={14} />
                         <span>{exp.location}</span>
                       </div>
                     </div>
                   </div>
 
-                  <p className="text-gray-300 leading-relaxed mb-4">
+                  {/* Description */}
+                  <p
+                    className={`leading-relaxed mb-5 ${
+                      exp.current
+                        ? "text-lorenzo-dark/80"
+                        : "text-lorenzo-light/60"
+                    }`}
+                  >
                     {exp.description}
                   </p>
 
+                  {/* Technologies */}
                   <div className="flex flex-wrap gap-2">
                     {exp.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="text-xs bg-green-500/10 text-green-400 px-3 py-1 rounded-full border border-green-500/30"
+                        className={`text-xs font-semibold uppercase tracking-wide px-3 py-1.5 transition-colors duration-300 ${
+                          exp.current
+                            ? "bg-lorenzo-dark/10 text-lorenzo-dark"
+                            : "bg-lorenzo-light/5 text-lorenzo-light/50 group-hover:bg-lorenzo-accent/20 group-hover:text-lorenzo-accent"
+                        }`}
                       >
                         {tech}
                       </span>
