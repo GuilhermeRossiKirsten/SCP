@@ -1,16 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, Github, Star, GitFork, Loader2 } from "lucide-react";
-import { Button } from "./ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
+import { Github, Star, GitFork, Loader2, ArrowUpRight } from "lucide-react";
 import useSWR from "swr";
 import { useState } from "react";
 
@@ -29,22 +20,6 @@ interface GitHubProject {
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const getLanguageGradient = (language: string | null) => {
-  const gradients: Record<string, string> = {
-    JavaScript: "from-yellow-500 to-orange-500",
-    TypeScript: "from-blue-500 to-cyan-500",
-    Python: "from-green-500 to-teal-500",
-    Java: "from-red-500 to-orange-500",
-    "C++": "from-purple-500 to-pink-500",
-    C: "from-gray-500 to-gray-700",
-    Go: "from-cyan-500 to-blue-500",
-    Rust: "from-orange-500 to-red-500",
-    Ruby: "from-red-500 to-pink-500",
-    PHP: "from-indigo-500 to-purple-500",
-  };
-  return gradients[language || ""] || "from-green-500 to-emerald-500";
-};
-
 export function ProjectsSection() {
   const [displayCount, setDisplayCount] = useState(6);
 
@@ -58,19 +33,24 @@ export function ProjectsSection() {
     return (
       <section
         id="projects"
-        className="py-20 px-4 bg-gradient-to-b from-gray-900 to-black"
+        data-theme="dark"
+        className="py-24 md:py-32 px-6 md:px-12 bg-[#0f0f10]"
       >
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
-              Projetos em Destaque
+        <div className="max-w-[1400px] mx-auto">
+          <div className="mb-16">
+            <span className="text-lorenzo-accent text-xs tracking-[0.3em] uppercase font-bold mb-4 block">
+              Portfólio
+            </span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-lorenzo-light uppercase tracking-tight leading-[1.1]">
+              Projetos
+              <br />
+              <span className="text-lorenzo-accent font-brier italic">
+                Selecionados
+              </span>
             </h2>
-            <p className="text-gray-400 text-lg">
-              Alguns dos meus trabalhos mais relevantes
-            </p>
           </div>
           <div className="flex justify-center items-center py-20">
-            <Loader2 className="w-8 h-8 animate-spin text-green-400" />
+            <Loader2 className="w-10 h-10 animate-spin text-lorenzo-accent" />
           </div>
         </div>
       </section>
@@ -81,19 +61,26 @@ export function ProjectsSection() {
     return (
       <section
         id="projects"
-        className="py-20 px-4 bg-gradient-to-b from-gray-900 to-black"
+        data-theme="dark"
+        className="py-24 md:py-32 px-6 md:px-12 bg-[#0f0f10]"
       >
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
-              Projetos em Destaque
+        <div className="max-w-[1400px] mx-auto">
+          <div className="mb-16">
+            <span className="text-lorenzo-accent text-xs tracking-[0.3em] uppercase font-bold mb-4 block">
+              Portfólio
+            </span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-lorenzo-light uppercase tracking-tight leading-[1.1]">
+              Projetos
+              <br />
+              <span className="text-lorenzo-accent font-brier italic">
+                Selecionados
+              </span>
             </h2>
-            <p className="text-gray-400 text-lg">
-              Alguns dos meus trabalhos mais relevantes
-            </p>
           </div>
-          <div className="text-center text-red-400">
-            <p>Erro ao carregar projetos. Tente novamente mais tarde.</p>
+          <div className="text-center py-20 border-dashed">
+            <p className="text-lorenzo-light/60">
+              Erro ao carregar projetos. Tente novamente mais tarde.
+            </p>
           </div>
         </div>
       </section>
@@ -106,140 +93,155 @@ export function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="py-20 px-4 bg-gradient-to-b from-gray-900 to-black"
+      data-theme="dark"
+      className="py-24 md:py-32 px-6 md:px-12 bg-[#0f0f10]"
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-[1400px] mx-auto">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
-            Projetos em Destaque
-          </h2>
-          <p className="text-gray-400 text-lg">
-            {projects.length} repositórios do GitHub • Mostrando{" "}
-            {displayedProjects.length}
-          </p>
+          <span className="text-lorenzo-accent text-xs tracking-[0.3em] uppercase font-bold mb-4 block">
+            Portfólio
+          </span>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-lorenzo-light uppercase tracking-tight leading-[1.1]">
+              Projetos
+              <br />
+              <span className="text-lorenzo-accent font-brier italic">
+                Selecionados
+              </span>
+            </h2>
+            <p className="text-lorenzo-light/60 text-sm tracking-wide">
+              {projects.length} repositórios • {displayedProjects.length}{" "}
+              exibidos
+            </p>
+          </div>
         </motion.div>
 
+        {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayedProjects.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
               viewport={{ once: true }}
-              whileHover={{ y: -10 }}
+              className="group"
             >
-              <Card className="bg-gradient-to-br from-gray-800 to-gray-900 border-gray-700 hover:border-gray-600 transition-all h-full flex flex-col">
-                <CardHeader>
-                  <div
-                    className={`w-full h-2 rounded-full bg-gradient-to-r ${getLanguageGradient(project.language)} mb-4`}
-                  />
-                  <CardTitle className="text-white text-lg">
-                    {project.title}
-                  </CardTitle>
-                  <CardDescription className="text-gray-400 line-clamp-2">
-                    {project.description}
-                  </CardDescription>
-                </CardHeader>
+              <div className="relative h-full bg-lorenzo-light/5 p-6 flex flex-col hover:bg-lorenzo-light/[0.07] transition-all duration-300">
+                {/* Index */}
+                <span className="absolute top-4 right-4 text-xs font-bold text-lorenzo-light/20">
+                  0{index + 1}
+                </span>
 
-                <CardContent className="flex-1">
-                  <div className="flex items-center gap-4 mb-3 text-sm text-gray-400">
-                    {project.language && (
-                      <span className="flex items-center gap-1">
-                        <span
-                          className={`w-3 h-3 rounded-full bg-gradient-to-r ${getLanguageGradient(project.language)}`}
-                        />
-                        {project.language}
-                      </span>
-                    )}
-                    {project.stars > 0 && (
-                      <span className="flex items-center gap-1">
-                        <Star className="w-3 h-3" />
-                        {project.stars}
-                      </span>
-                    )}
-                    {project.forks > 0 && (
-                      <span className="flex items-center gap-1">
-                        <GitFork className="w-3 h-3" />
-                        {project.forks}
-                      </span>
-                    )}
+                {/* Language Badge */}
+                {project.language && (
+                  <div className="inline-flex items-center gap-2 mb-4 w-fit">
+                    <span className="w-2 h-2 bg-lorenzo-accent" />
+                    <span className="text-xs font-bold uppercase tracking-wider text-lorenzo-accent">
+                      {project.language}
+                    </span>
                   </div>
+                )}
 
-                  {project.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.slice(0, 4).map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-1 bg-gray-700/50 text-gray-300 rounded text-xs border border-gray-600"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                {/* Title */}
+                <h3 className="text-xl font-bold uppercase tracking-wide text-lorenzo-light mb-3 group-hover:text-lorenzo-accent transition-colors duration-300">
+                  {project.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-lorenzo-light/60 text-sm leading-relaxed mb-4 line-clamp-2 flex-1">
+                  {project.description || "Sem descrição disponível"}
+                </p>
+
+                {/* Stats */}
+                <div className="flex items-center gap-4 mb-5 text-sm">
+                  {project.stars > 0 && (
+                    <span className="flex items-center gap-1 text-lorenzo-light/40">
+                      <Star size={14} />
+                      {project.stars}
+                    </span>
                   )}
-                </CardContent>
+                  {project.forks > 0 && (
+                    <span className="flex items-center gap-1 text-lorenzo-light/40">
+                      <GitFork size={14} />
+                      {project.forks}
+                    </span>
+                  )}
+                </div>
 
-                <CardFooter className="gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex-1 border-green-500 text-green-400 hover:bg-green-500/10 bg-transparent"
-                    asChild
+                {/* Tags */}
+                {project.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tags.slice(0, 3).map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2 py-1 bg-lorenzo-light/5 text-lorenzo-light/50 text-xs uppercase tracking-wide"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {/* Actions */}
+                <div className="flex gap-3 mt-auto">
+                  <motion.a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex-1 flex items-center justify-center gap-2 bg-lorenzo-light/10 text-lorenzo-light font-bold uppercase text-xs tracking-wider px-4 py-3 hover:bg-lorenzo-accent hover:text-black transition-colors duration-300"
                   >
-                    <a
-                      href={project.url}
+                    <Github size={16} />
+                    Código
+                  </motion.a>
+                  {project.homepage && (
+                    <motion.a
+                      href={project.homepage}
                       target="_blank"
                       rel="noopener noreferrer"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="flex items-center gap-2 bg-lorenzo-light/10 text-lorenzo-light font-bold uppercase px-6 py-3 text-sm tracking-wider hover:bg-lorenzo-accent hover:text-black transition-colors duration-300"
                     >
-                      <Github className="w-4 h-4 mr-2" />
-                      GitHub
-                    </a>
-                  </Button>
-                  {project.homepage && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="flex-1 border-emerald-500 text-emerald-400 hover:bg-emerald-500/10 bg-transparent"
-                      asChild
-                    >
-                      <a
-                        href={project.homepage}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        Demo
-                      </a>
-                    </Button>
+                      <ArrowUpRight size={16} />
+                      Demo
+                    </motion.a>
                   )}
-                </CardFooter>
-              </Card>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
 
+        {/* Load More */}
         {hasMore && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mt-12"
+            className="text-center mt-16"
           >
-            <Button
+            <motion.button
               onClick={() => setDisplayCount((prev) => prev + 6)}
-              className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-8 py-6 text-lg"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center gap-3 bg-lorenzo-accent text-lorenzo-dark font-bold uppercase tracking-wider px-8 py-4 text-sm hover:bg-lorenzo-light hover:text-lorenzo-dark transition-colors duration-300"
             >
-              Carregar Mais Projetos ({projects.length - displayCount}{" "}
-              restantes)
-            </Button>
+              Carregar Mais
+              <span className="text-lorenzo-dark/60">
+                +{projects.length - displayCount}
+              </span>
+            </motion.button>
           </motion.div>
         )}
       </div>

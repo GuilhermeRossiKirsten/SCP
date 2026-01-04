@@ -3,10 +3,7 @@
 import type React from "react";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Check } from "lucide-react";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
+import { Send, Check, ArrowUpRight } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 export function ContactSection() {
@@ -21,12 +18,12 @@ export function ContactSection() {
 
     try {
       await emailjs.sendForm(
-        process.env.NEXT_PUBLIC_SERVICE_ID || "", // troque pelo seu Service ID
-        process.env.NEXT_PUBLIC_TEMPLATE_ID || "", // troque pelo seu Template ID
+        process.env.NEXT_PUBLIC_SERVICE_ID || "",
+        process.env.NEXT_PUBLIC_TEMPLATE_ID || "",
         form,
         {
           publicKey: process.env.NEXT_PUBLIC_PUBLIC_KEY || "",
-        }, // troque pela sua Public Key
+        },
       );
 
       setIsSubmitted(true);
@@ -41,110 +38,162 @@ export function ContactSection() {
   };
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-black to-gray-900">
-      <div className="max-w-2xl mx-auto">
+    <section
+      id="contact"
+      data-theme="dark"
+      className="relative py-24 md:py-32 px-6 md:px-12 bg-[#0a0a0a]"
+    >
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, rgba(200, 245, 80, 0.3) 1px, transparent 0)`,
+            backgroundSize: "40px 40px",
+          }}
+        />
+      </div>
+
+      <div className="max-w-[1000px] mx-auto relative z-10">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
+          <span className="text-lorenzo-accent text-xs tracking-[0.3em] uppercase font-bold mb-4 block">
             Contato
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-lorenzo-light uppercase tracking-tight leading-[1.1] mb-6">
+            Vamos
+            <br />
+            <span className="text-lorenzo-accent font-brier italic">
+              Conversar?
+            </span>
           </h2>
-          <p className="text-gray-300 text-lg">
-            Vamos construir algo seguro e incrível juntos!
+          <p className="text-lorenzo-light/60 text-lg max-w-xl mx-auto">
+            Estou disponível para novos projetos, oportunidades e parcerias.
           </p>
         </motion.div>
 
+        {/* Form */}
         <motion.form
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
           onSubmit={handleSubmit}
-          className="space-y-6 bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-8 border border-gray-700"
+          className="bg-lorenzo-light/5 p-8 md:p-12"
         >
-          <div>
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-gray-300 mb-2"
-            >
-              Nome
-            </label>
-            <Input
-              id="name"
-              name="nome"
-              type="text"
-              required
-              className="bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400 focus:border-green-500"
-              placeholder="Seu nome"
-            />
+          <div className="grid md:grid-cols-2 gap-6 mb-6">
+            {/* Name */}
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-xs font-bold uppercase tracking-wider text-lorenzo-light/60 mb-3"
+              >
+                Nome
+              </label>
+              <input
+                id="name"
+                name="nome"
+                type="text"
+                required
+                placeholder="Seu nome"
+                className="w-full px-5 py-4 bg-lorenzo-light/5 text-lorenzo-light placeholder:text-lorenzo-light/30 focus:bg-lorenzo-light/10 focus:outline-none transition-colors"
+              />
+            </div>
+
+            {/* Email */}
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-xs font-bold uppercase tracking-wider text-lorenzo-light/60 mb-3"
+              >
+                E-mail
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                placeholder="seu@email.com"
+                className="w-full px-5 py-4 bg-lorenzo-light/5 text-lorenzo-light placeholder:text-lorenzo-light/30 focus:bg-lorenzo-light/10 focus:outline-none transition-colors"
+              />
+            </div>
           </div>
 
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-300 mb-2"
-            >
-              E-mail
-            </label>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              required
-              className="bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400 focus:border-green-500"
-              placeholder="seu@email.com"
-            />
-          </div>
-
-          <div>
+          {/* Message */}
+          <div className="mb-8">
             <label
               htmlFor="message"
-              className="block text-sm font-medium text-gray-300 mb-2"
+              className="block text-xs font-bold uppercase tracking-wider text-lorenzo-light/60 mb-3"
             >
               Mensagem
             </label>
-            <Textarea
+            <textarea
               id="message"
               name="mensagem"
               required
               rows={5}
-              className="bg-gray-700/50 border-gray-600 text-white placeholder:text-gray-400 focus:border-green-500 resize-none"
-              placeholder="Sua mensagem..."
+              placeholder="Conte-me sobre seu projeto..."
+              className="w-full px-5 py-4 bg-lorenzo-light/5 text-lorenzo-light placeholder:text-lorenzo-light/30 focus:bg-lorenzo-light/10 focus:outline-none transition-colors resize-none"
             />
           </div>
 
-          <Button
+          {/* Submit */}
+          <motion.button
             type="submit"
             disabled={isSubmitting || isSubmitted}
-            className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-6 text-lg rounded-lg shadow-lg shadow-emerald-500/50 transition-all hover:shadow-emerald-500/70 disabled:opacity-50"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="w-full flex items-center justify-center gap-3 bg-lorenzo-accent text-lorenzo-dark font-bold uppercase tracking-wider py-5 text-sm hover:bg-lorenzo-light hover:text-lorenzo-dark transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting ? (
               <motion.div
+                animate={{ rotate: 360 }}
                 transition={{
                   duration: 1,
-                  repeat: Number.POSITIVE_INFINITY,
+                  repeat: Infinity,
                   ease: "linear",
                 }}
               >
-                <Send className="w-5 h-5" />
+                <Send size={20} />
               </motion.div>
             ) : isSubmitted ? (
               <>
-                <Check className="w-5 h-5 mr-2" />
-                Enviado!
+                <Check size={20} />
+                Enviado com Sucesso!
               </>
             ) : (
               <>
-                <Send className="w-5 h-5 mr-2" />
                 Enviar Mensagem
+                <ArrowUpRight size={20} />
               </>
             )}
-          </Button>
+          </motion.button>
         </motion.form>
+
+        {/* Alternative Contact
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="text-center mt-12"
+        >
+          <p className="text-lorenzo-light/40 text-sm mb-3">
+            Ou entre em contato direto
+          </p>
+          <a
+            href="mailto:guilherme.rossikirsten@gmail.com"
+            className="text-lorenzo-accent font-bold hover:text-lorenzo-light transition-colors"
+          >
+            guilherme.rossikirsten@gmail.com
+          </a>
+        </motion.div> */}
       </div>
     </section>
   );

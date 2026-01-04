@@ -1,87 +1,136 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, BookOpen } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+
+const footerLinks = {
+  pages: [
+    { label: "Home", href: "#hero" },
+    { label: "Sobre", href: "#about" },
+    { label: "Skills", href: "#skills" },
+    { label: "Projetos", href: "#projects" },
+    { label: "Experiência", href: "#experience" },
+    { label: "Certificações", href: "#certifications" },
+    { label: "Artigos", href: "/articles" },
+    { label: "Contato", href: "#contact" },
+  ],
+  social: [
+    {
+      label: "GitHub",
+      href: "https://github.com/GuilhermeRossiKirsten",
+      icon: Github,
+    },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/guilhermerossikirsten/",
+      icon: Linkedin,
+    },
+    { label: "Email", href: "mailto:guirossik10@gmail.com", icon: Mail },
+  ],
+};
 
 export function Footer() {
   return (
-    <motion.footer
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-      className="py-12 px-4 bg-black border-t border-gray-800"
-    >
-      <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* About */}
-          <div className="text-center md:text-left">
-            <h3 className="text-xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent mb-2">
-              Guilherme Rossi Kirsten
+    <footer className="bg-[#0a0a0a]">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-16 md:py-20">
+        {/* Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+          {/* Pages */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h3 className="text-lorenzo-accent text-xs tracking-[0.2em] uppercase font-bold mb-6">
+              Páginas
             </h3>
-            <p className="text-gray-400 text-sm">
-              Desenvolvedor Fullstack | SecDevOps Enthusiast
-            </p>
-          </div>
-
-          {/* Quick Links */}
-          <div className="text-center">
-            <h4 className="text-lg font-semibold text-white mb-3">
-              Links Rápidos
-            </h4>
-            <nav className="flex flex-col gap-2">
-              <Link
-                href="/articles"
-                className="text-gray-400 hover:text-green-400 transition-colors"
-              >
-                <span className="inline-flex items-center gap-2">
-                  <BookOpen className="w-4 h-4" />
-                  Artigos
-                </span>
-              </Link>
+            <nav className="flex flex-col gap-3">
+              {footerLinks.pages.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="group flex items-center gap-2 text-lorenzo-light/70 hover:text-lorenzo-accent transition-colors duration-300"
+                >
+                  <span>{link.label}</span>
+                  <ArrowUpRight
+                    size={14}
+                    className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+                  />
+                </Link>
+              ))}
             </nav>
-          </div>
+          </motion.div>
 
-          {/* Social */}
-          <div className="flex flex-col items-center md:items-end">
-            <h4 className="text-lg font-semibold text-white mb-3">
-              Redes Sociais
-            </h4>
-            <div className="flex gap-4">
-              <a
-                href="https://github.com/GuilhermeRossiKirsten"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors"
-              >
-                <Github className="w-5 h-5 text-gray-300" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/guilhermerossikirsten/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors"
-              >
-                <Linkedin className="w-5 h-5 text-gray-300" />
-              </a>
-              <a
-                href="mailto:guirossik10@gmail.com"
-                className="w-10 h-10 rounded-full bg-gray-800 hover:bg-gray-700 flex items-center justify-center transition-colors"
-              >
-                <Mail className="w-5 h-5 text-gray-300" />
-              </a>
+          {/* Center - CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-center"
+          >
+            <h2 className="text-3xl md:text-4xl font-black text-lorenzo-light uppercase tracking-tight mb-6">
+              Vamos
+              <br />
+              <span className="text-lorenzo-accent">Trabalhar</span>
+              <br />
+              Juntos?
+            </h2>
+            <motion.a
+              href="#contact"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-block bg-lorenzo-accent text-lorenzo-dark font-bold uppercase px-6 py-3 text-sm tracking-wider hover:bg-lorenzo-light hover:text-lorenzo-dark transition-colors duration-300"
+            >
+              Entre em Contato
+            </motion.a>
+          </motion.div>
+
+          {/* Social Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="md:text-right"
+          >
+            <h3 className="text-lorenzo-accent text-xs tracking-[0.2em] uppercase font-bold mb-6">
+              Social
+            </h3>
+            <div className="flex md:justify-end gap-3">
+              {footerLinks.social.map(({ label, href, icon: Icon }) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={
+                    href.startsWith("http") ? "noopener noreferrer" : undefined
+                  }
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-10 h-10 bg-lorenzo-light/5 hover:bg-lorenzo-accent hover:text-black flex items-center justify-center text-lorenzo-light/70 transition-colors duration-300"
+                  aria-label={label}
+                >
+                  <Icon size={18} />
+                </motion.a>
+              ))}
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        <div className="pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
-          <p>
+        {/* Bottom Bar */}
+        <div className="mt-12 pt-8 border-t border-lorenzo-light/10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <span className="text-lorenzo-accent font-bold text-xl tracking-tight">
+            GRK
+          </span>
+          <p className="text-lorenzo-light/40 text-sm">
             © {new Date().getFullYear()} Guilherme Rossi Kirsten. Todos os
             direitos reservados.
           </p>
         </div>
       </div>
-    </motion.footer>
+    </footer>
   );
 }

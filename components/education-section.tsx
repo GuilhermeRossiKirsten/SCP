@@ -1,75 +1,107 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Calendar, Target } from "lucide-react";
+import { GraduationCap, Calendar, MapPin } from "lucide-react";
 
 export function EducationSection() {
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-black to-gray-900">
-      <div className="max-w-5xl mx-auto">
+    <section
+      id="education"
+      data-theme="dark"
+      className="relative py-24 md:py-32 px-6 md:px-12 bg-[#0a0a0a]"
+    >
+      <div className="max-w-[1200px] mx-auto">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-16"
         >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <motion.div
-              animate={{ rotate: [0, 10, -10, 0] }}
-              transition={{
-                duration: 2,
-                repeat: Number.POSITIVE_INFINITY,
-                repeatDelay: 3,
-              }}
-            >
-              <GraduationCap className="w-10 h-10 text-green-400" />
-            </motion.div>
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
-              Formação Acadêmica
-            </h2>
-          </div>
-          <p className="text-gray-400 text-lg">Minha base educacional</p>
+          <span className="text-lorenzo-accent text-xs tracking-[0.3em] uppercase font-bold mb-4 block">
+            Formação
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-lorenzo-light uppercase tracking-tight leading-[1.1]">
+            Educação
+            <br />
+            <span className="text-lorenzo-accent font-brier italic">
+              Acadêmica
+            </span>
+          </h2>
         </motion.div>
 
+        {/* Education Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
           viewport={{ once: true }}
-          whileHover={{ scale: 1.02 }}
-          className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700 hover:border-green-500/50 transition-all shadow-xl hover:shadow-green-500/20"
+          className="group"
         >
-          <div className="flex flex-col md:flex-row gap-6">
-            <div className="flex-shrink-0">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center shadow-lg shadow-green-500/50">
-                <GraduationCap className="w-10 h-10 text-white" />
-              </div>
-            </div>
-
-            <div className="flex-1">
-              <h3 className="text-3xl font-bold text-white mb-2">
-                FIAP – Faculdade de Informática e Administração Paulista
-              </h3>
-              <p className="text-xl text-green-400 font-semibold mb-4">
-                Bacharelado em Engenharia da Computação
-              </p>
-
-              <div className="flex flex-wrap gap-4 mb-4">
-                <div className="flex items-center gap-2 text-gray-400">
-                  <Calendar className="w-5 h-5 text-green-400" />
-                  <span>Janeiro/2022 – Dezembro/2026</span>
-                </div>
+          <div className="bg-lorenzo-accent p-8 md:p-12">
+            <div className="flex flex-col lg:flex-row gap-8 items-start">
+              {/* Icon */}
+              <div className="w-20 h-20 bg-lorenzo-dark/10 flex items-center justify-center flex-shrink-0">
+                <GraduationCap size={40} className="text-lorenzo-dark" />
               </div>
 
-              <div className="flex items-start gap-2 bg-green-500/10 border border-green-500/30 rounded-lg p-4">
-                <Target className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                <p className="text-gray-300 leading-relaxed">
-                  Ênfase em sistemas embarcados, segurança da informação e
-                  engenharia de software. Participação em projetos acadêmicos
-                  envolvendo IA, Big Data, e desenvolvimento de sistemas de alta
-                  performance.
+              {/* Content */}
+              <div className="flex-1">
+                {/* Badge */}
+                <span className="inline-block text-xs font-bold uppercase tracking-wider text-lorenzo-dark/60 mb-3">
+                  Em andamento
+                </span>
+
+                {/* Title */}
+                <h3 className="text-2xl md:text-3xl font-black uppercase tracking-wide text-lorenzo-dark mb-2">
+                  Engenharia da Computação
+                </h3>
+
+                {/* Institution */}
+                <p className="text-lg font-semibold text-lorenzo-dark/80 mb-6">
+                  FIAP – Faculdade de Informática e Administração Paulista
                 </p>
+
+                {/* Meta */}
+                <div className="flex flex-wrap gap-6 mb-6">
+                  <div className="flex items-center gap-2 text-lorenzo-dark/70">
+                    <Calendar size={18} />
+                    <span className="font-semibold">Jan/2022 – Dez/2026</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-lorenzo-dark/70">
+                    <MapPin size={18} />
+                    <span className="font-semibold">São Paulo, SP</span>
+                  </div>
+                </div>
+
+                {/* Description */}
+                <div className="bg-lorenzo-dark/10 p-5">
+                  <p className="text-lorenzo-dark/80 leading-relaxed">
+                    Bacharelado com ênfase em sistemas embarcados, segurança da
+                    informação e engenharia de software. Participação em
+                    projetos acadêmicos envolvendo IA, Big Data e
+                    desenvolvimento de sistemas de alta performance.
+                  </p>
+                </div>
+
+                {/* Focus Areas */}
+                <div className="flex flex-wrap gap-2 mt-6">
+                  {[
+                    "Sistemas Embarcados",
+                    "Segurança",
+                    "IA",
+                    "Big Data",
+                    "Alta Performance",
+                  ].map((area) => (
+                    <span
+                      key={area}
+                      className="px-3 py-1.5 bg-lorenzo-dark/10 text-lorenzo-dark text-xs font-bold uppercase tracking-wide"
+                    >
+                      {area}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
