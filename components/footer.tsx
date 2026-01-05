@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { ListeningNow } from "./listening-now";
 
 const footerLinks = {
   pages: [
@@ -125,7 +126,10 @@ export function Footer() {
           <span className="text-lorenzo-accent font-bold text-xl tracking-tight">
             GRK
           </span>
-          <p className="text-lorenzo-light/40 text-sm">
+          <div className="flex items-center gap-4">
+            <ListeningNow />
+          </div>
+          <p className="text-lorenzo-light/40 text-sm text-center md:text-right">
             © {new Date().getFullYear()} Guilherme Rossi Kirsten. Todos os
             direitos reservados.
           </p>
