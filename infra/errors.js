@@ -126,3 +126,24 @@ export class RateLimitError extends Error {
     };
   }
 }
+
+//Error 502
+export class BadGatewayError extends Error {
+  constructor({ cause, message, action }) {
+    super(message || "Erro de gateway.", {
+      cause,
+    });
+    this.name = "BadGatewayError";
+    this.action = action || "Tente novamente mais tarde.";
+    this.statusCode = 502;
+  }
+
+  toJSON() {
+    return {
+      message: this.message,
+      name: this.name,
+      action: this.action,
+      status_code: this.statusCode,
+    };
+  }
+}
