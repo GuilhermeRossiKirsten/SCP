@@ -6,7 +6,7 @@ import { Briefcase, MapPin } from "lucide-react";
 const experiences = [
   {
     company: "XP Inc.",
-    role: "Desenvolvedor Full Stack",
+    role: "Engenheiro de software",
     period: "Nov/2025 – Presente",
     location: "São Paulo, SP",
     description:
