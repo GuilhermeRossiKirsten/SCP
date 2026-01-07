@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import ScrollProgressBar from "../app/articles/[slug]/ScrollProgressBar";
 
 const menuItems = [
   { label: "Home", href: "#hero" },
@@ -63,6 +64,7 @@ export function Header() {
           isScrolled ? "backdrop-blur-xl bg-lorenzo-dark/80" : "bg-transparent"
         }`}
       >
+        <ScrollProgressBar />
         <div className="max-w-[1920px] mx-auto px-6 md:px-12 flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="relative z-10">
@@ -79,7 +81,7 @@ export function Header() {
             </motion.span>
           </Link>
 
-          {/* Menu Button */}
+          {/* Botão do Menu */}
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
