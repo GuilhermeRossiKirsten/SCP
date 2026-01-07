@@ -5,9 +5,33 @@ import { Briefcase, MapPin } from "lucide-react";
 
 const experiences = [
   {
+    company: "XP Inc.",
+    role: "Desenvolvedor Full Stack",
+    period: "Nov/2025 – Presente",
+    location: "São Paulo, SP",
+    description:
+      "Atuação como engenheiro de software, participando do desenho e evolução da arquitetura do projeto. Desenvolvimento de APIs REST em C# e TypeScript, com front-end em React.js. Trabalho em conjunto com a equipe na definição de soluções técnicas eficientes e escaláveis, com uso de mensageria e boas práticas de engenharia de software.",
+    technologies: [
+      "C#",
+      "TypeScript",
+      "React.js",
+      "API REST",
+      "DDD",
+      "Kafka",
+      "RabbitMQ",
+      "MongoDB",
+      "Redis",
+      "Azure DevOps",
+      "Linux",
+      "Testes Funcionais",
+      "Arquitetura de Software",
+    ],
+    current: true,
+  },
+  {
     company: "Management Solutions",
     role: "Engenheiro de Dados",
-    period: "Set/2025 – Presente",
+    period: "Set/2025 – Nov/2025",
     location: "São Paulo, SP",
     description:
       "Desenvolvimento e manutenção de pipelines de dados, realizando ETL de grandes volumes de informações. Atuo no cruzamento e integração de dados para suporte à análise e tomada de decisão.",
@@ -19,7 +43,7 @@ const experiences = [
       "Big Data",
       "Delta Lake",
     ],
-    current: true,
+    current: false,
   },
   {
     company: "Eval Digital",
