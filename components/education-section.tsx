@@ -78,10 +78,15 @@ export function EducationSection() {
                 {/* Description */}
                 <div className="bg-lorenzo-dark/10 p-5">
                   <p className="text-lorenzo-dark/80 leading-relaxed">
-                    Bacharelado com ênfase em sistemas embarcados, segurança da
-                    informação e engenharia de software. Participação em
-                    projetos acadêmicos envolvendo IA, Big Data e
-                    desenvolvimento de sistemas de alta performance.
+                    Bacharelado em Engenharia da Computação pela FIAP, com
+                    ênfase em sistemas embarcados, segurança da informação e
+                    engenharia de software. Formação sólida em algoritmos e
+                    estruturas de dados, arquitetura e projeto de software,
+                    sistemas operacionais, redes e bancos de dados, com
+                    participação em projetos acadêmicos voltados a inteligência
+                    artificial, Big Data e desenvolvimento de sistemas de alta
+                    performance, aliando fundamentos teóricos a práticas
+                    alinhadas ao mercado.
                   </p>
                 </div>
 
@@ -89,10 +94,13 @@ export function EducationSection() {
                 <div className="flex flex-wrap gap-2 mt-6">
                   {[
                     "Sistemas Embarcados",
-                    "Segurança",
-                    "IA",
+                    "Segurança da Informação",
+                    "Engenharia de Software",
+                    "Inteligência Artificial",
                     "Big Data",
-                    "Alta Performance",
+                    "Sistemas de Alta Performance",
+                    "Arquitetura de Software",
+                    "Algoritmos e Estruturas de Dados",
                   ].map((area) => (
                     <span
                       key={area}

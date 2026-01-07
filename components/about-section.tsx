@@ -40,9 +40,10 @@ export function AboutSection() {
 
             {/* Description */}
             <p className="text-lorenzo-light/80 text-lg leading-relaxed mb-6">
-              Sou desenvolvedor fullstack com experiência em C++, Golang, React
-              e Next.js. Atuo em projetos críticos do Banco Central e PIX, com
-              foco em segurança, escalabilidade e automação DevSecOps.
+              Sou engenheiro de software com experiência em C++, Golang, C#,
+              TypeScript, React e Next.js, atuei em projetos críticos do Banco
+              Central e do PIX, com forte foco em segurança, escalabilidade e
+              automação DevSecOps.
             </p>
             <p className="text-lorenzo-light/60 leading-relaxed mb-10">
               Apaixonado por criar sistemas robustos e seguros, sempre buscando
@@ -81,17 +82,20 @@ export function AboutSection() {
               {
                 icon: Code2,
                 title: "Desenvolvimento",
-                description: "C++, Golang, TypeScript, React, Next.js",
+                description:
+                  "C++, Golang, C#, TypeScript, React, Next.js, APIs REST, DDD",
               },
               {
                 icon: Shield,
                 title: "Segurança",
-                description: "Criptografia, HSM, DevSecOps",
+                description:
+                  "Criptografia, Certificados Digitais, HSM, DevSecOps",
               },
               {
                 icon: Server,
-                title: "Infraestrutura",
-                description: "Docker, Kubernetes, CI/CD, Cloud",
+                title: "Infraestrutura & Cloud",
+                description:
+                  "Docker, Kubernetes, CI/CD, Azure DevOps, Arquiteturas Cloud, Linux",
               },
             ].map((item) => (
               <div
