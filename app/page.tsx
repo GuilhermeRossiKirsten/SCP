@@ -14,6 +14,7 @@ import { CertificationsSection } from "@/components/certifications-section";
 import { ContactSection } from "@/components/contact-section";
 import { Footer } from "@/components/footer";
 import { MouseCursor } from "@/components/mouse-cursor";
+import { KonamiCode } from "@/components/KonamiCode";
 import Lenis from "lenis";
 
 export default function Home() {
@@ -82,6 +83,9 @@ export default function Home() {
             <CertificationsSection />
             <ContactSection />
             <Footer />
+
+            {/* Konami Code */}
+            <KonamiCode />
           </>
         )}
       </motion.main>
