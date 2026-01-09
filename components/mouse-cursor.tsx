@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { motion, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 
 export function MouseCursor() {
   const [isVisible, setIsVisible] = useState(false);
@@ -9,17 +9,19 @@ export function MouseCursor() {
   const [isClicking, setIsClicking] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
 
-  const springConfig = { damping: 25, stiffness: 300 };
-  const cursorX = useSpring(0, springConfig);
-  const cursorY = useSpring(0, springConfig);
+  const [cursorX, setCursorX] = useState(0);
+  const [cursorY, setCursorY] = useState(0);
 
   useEffect(() => {
     // Esconde em dispositivos touch
     if ("ontouchstart" in window) return;
 
+    console.log("MouseCursor initialized");
+
     const handleMouseMove = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
+      setCursorX(e.clientX);
+      setCursorY(e.clientY);
+
       setIsVisible(true);
     };
 
@@ -68,7 +70,7 @@ export function MouseCursor() {
       cleanup?.();
       observer.disconnect();
     };
-  }, [cursorX, cursorY]);
+  }, []);
 
   if (!isVisible) return null;
 
