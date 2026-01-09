@@ -10,7 +10,7 @@ import { GeistMono } from "geist/font/mono";
 import { Analytics } from "@vercel/analytics/next";
 import { Suspense } from "react";
 import "./globals.css";
-
+import { MouseCursor } from "@/components/mouse-cursor";
 // Google Fonts - Lorenzo Design System
 const roboto = Roboto({
   subsets: ["latin"],
@@ -63,6 +63,8 @@ export default function RootLayout({
           font-sans antialiased
         `}
       >
+        {/* Custom Cursor */}
+        <MouseCursor />
         <Suspense fallback={null}>{children}</Suspense>
         <Analytics />
       </body>
