@@ -6,10 +6,26 @@ import { useState } from "react";
 
 const certifications = [
   {
+    title: "Cybersecurity",
+    institution: "FIAP",
+    category: "Segurança",
+    date: "jun de 2025",
+    image:
+      "https://on.fiap.com.br/local/nanocourses/gerar_certificado.php?chave=e976469a6367de7915ddaa37ee8e191d&action=view",
+    skills: [
+      "Cybersecurity",
+      "Segurança da Informação",
+      "Proteção de Dados",
+      "Cibersegurança",
+    ],
+  },
+  {
     title: "Go: a linguagem do Google",
     institution: "Alura",
     category: "Programação",
     date: "mai de 2025",
+    image:
+      "https://cursos.alura.com.br/certificate/c0d7df2c-5836-4005-85b2-d1f4934688d6?lang",
     skills: ["Golang", "APIs", "Desempenho", "Concorrência", "Backend"],
   },
   {
@@ -17,6 +33,8 @@ const certifications = [
     institution: "FIAP",
     category: "Cloud",
     date: "mar de 2025",
+    image:
+      "https://on.fiap.com.br/local/nanocourses/gerar_certificado.php?chave=b94f48aaf8c71fcb3a09f1e09be6a1a0&action=view",
     skills: ["Docker", "Kubernetes", "Azure", "Cloud"],
   },
   {
@@ -24,6 +42,8 @@ const certifications = [
     institution: "Full Cycle",
     category: "Arquitetura",
     date: "fev de 2025",
+    image:
+      "https://fullcycle.com.br/certificado/80807ee3-b904-45bd-97f4-5aabceb93eb0/",
     skills: ["DDD", "Design Patterns", "Arquitetura"],
   },
   {
@@ -31,6 +51,8 @@ const certifications = [
     institution: "Full Cycle",
     category: "Arquitetura",
     date: "fev de 2025",
+    image:
+      "https://fullcycle.com.br/certificado/38d1874f-8d4a-437a-88f0-ffacaa7ddd5d/",
     skills: ["Arquitetura", "Design Patterns", "Software"],
   },
   {
@@ -38,6 +60,8 @@ const certifications = [
     institution: "Full Cycle",
     category: "Arquitetura",
     date: "fev de 2025",
+    image:
+      "https://fullcycle.com.br/certificado/dc223ca6-0e39-4256-a9e1-06097ed8dd70/",
     skills: ["SOLID", "Clean Code", "Design Patterns"],
   },
   {
@@ -45,6 +69,8 @@ const certifications = [
     institution: "FIAP",
     category: "Programação",
     date: "out de 2024",
+    image:
+      "https://on.fiap.com.br/pluginfile.php/1/local_nanocourses/certificado_nanocourse/127884/c9baf3dba0c39c0a056138b98861c0f1/certificado.png",
     skills: ["HTML5", "CSS", "JavaScript", "TypeScript", "Bootstrap", "Git"],
   },
   {
@@ -52,6 +78,8 @@ const certifications = [
     institution: "FIAP",
     category: "Programação",
     date: "jun de 2024",
+    image:
+      "https://on.fiap.com.br/pluginfile.php/1/local_nanocourses/certificado_nanocourse/116819/ee8af00273cab61441b140d09779fa3e/certificado.png",
     skills: ["Estrutura de dados", "Algoritmos", "Otimização"],
   },
   {
@@ -59,6 +87,8 @@ const certifications = [
     institution: "Ada",
     category: "Programação",
     date: "jun de 2024",
+    image:
+      "https://ada.tech/certificado?code=25043df1-f654-a145-fc88-da58ea25be08",
     skills: ["Java", "POO", "Design Patterns", "SQL", "Git", "Algoritmos"],
   },
   {
@@ -66,6 +96,7 @@ const certifications = [
     institution: "Alura",
     category: "Programação",
     date: "fev de 2024",
+    image: "/certificates/placeholder.jpg",
     skills: ["C++", "Algoritmos", "STL"],
   },
   {
@@ -73,6 +104,8 @@ const certifications = [
     institution: "LinkedIn",
     category: "IA",
     date: "fev de 2024",
+    image:
+      "https://www.linkedin.com/learning/certificates/7f68b21780dd79257cf754b98bc7a1049db55ecb73f9812d6bd6961679ad8879?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BrfDGbhUUTL6SSoWjPSmsFQ%3D%3D",
     skills: ["IA Generativa", "Machine Learning", "AI"],
   },
   {
@@ -80,6 +113,8 @@ const certifications = [
     institution: "Rocketseat",
     category: "Programação",
     date: "fev de 2024",
+    image:
+      "https://app.rocketseat.com.br/certificates/639b9be1-d05c-45c9-ae5d-8d2dba55ca1f",
     skills: ["Java", "Spring Boot", "APIs"],
   },
   {
@@ -87,6 +122,8 @@ const certifications = [
     institution: "Alura",
     category: "DevOps",
     date: "jan de 2024",
+    image:
+      "https://cursos.alura.com.br/certificate/bbd9de09-c24a-46a7-a21c-f2d4a3d89a20",
     skills: ["Docker", "Containers", "DevOps"],
   },
   {
@@ -94,6 +131,8 @@ const certifications = [
     institution: "Alura",
     category: "DevOps",
     date: "jan de 2024",
+    image:
+      "https://cursos.alura.com.br/certificate/0e7c30a3-8445-462a-b706-b7d6aeed6c36",
     skills: ["Kubernetes", "Orquestração", "Containers"],
   },
   {
@@ -101,6 +140,8 @@ const certifications = [
     institution: "Rocketseat",
     category: "Programação",
     date: "out de 2023",
+    image:
+      "https://app.rocketseat.com.br/certificates/45dd803f-867f-4429-b103-23a5a52b983c",
     skills: ["Java", "POO", "Backend"],
   },
   {
@@ -108,6 +149,8 @@ const certifications = [
     institution: "FIAP",
     category: "Programação",
     date: "set de 2023",
+    image:
+      "https://on.fiap.com.br/pluginfile.php/1/local_nanocourses/certificado_nanocourse/95237/a7474167931de5a10a6767e35da2e331/certificado.png",
     skills: ["Java", "Spring Boot", "APIs REST"],
   },
   {
@@ -115,6 +158,8 @@ const certifications = [
     institution: "FIAP",
     category: "Programação",
     date: "set de 2023",
+    image:
+      "https://www2.fiap.com.br/inscricaoworkshopdobem/ImagemCertificado/54D78348-91A1-4C77-8725-07DF52D7FE51",
     skills: ["Java", "Spring Boot", "Azure", "HTML5", "CSS", "APIs"],
   },
   {
@@ -122,6 +167,8 @@ const certifications = [
     institution: "Alura",
     category: "Programação",
     date: "ago de 2023",
+    image:
+      "https://cursos.alura.com.br/certificate/33a7a8f2-9dea-4eb8-8197-403b3f27d844",
     skills: ["C#", ".NET", "POO"],
   },
   {
@@ -129,6 +176,8 @@ const certifications = [
     institution: "Alura",
     category: "Linux",
     date: "jul de 2023",
+    image:
+      "https://cursos.alura.com.br/certificate/54988775-52d5-4f9b-a487-6ece591a7c93",
     skills: ["Linux", "CLI", "Bash", "Shell"],
   },
   {
@@ -136,6 +185,8 @@ const certifications = [
     institution: "Alura",
     category: "DevOps",
     date: "jul de 2023",
+    image:
+      "https://cursos.alura.com.br/certificate/101521a2-995b-47f2-8d8e-842d07d97129",
     skills: ["Git", "GitHub", "Controle de versão"],
   },
   {
@@ -144,6 +195,8 @@ const certifications = [
     institution: "Alura",
     category: "Linux",
     date: "jun de 2023",
+    image:
+      "https://cursos.alura.com.br/certificate/c5d15db0-931e-441d-b25b-3935d04dccf5",
     skills: ["Linux", "Open Source", "Licenciamento"],
   },
   {
@@ -151,6 +204,8 @@ const certifications = [
     institution: "FIAP",
     category: "DevOps",
     date: "jun de 2023",
+    image:
+      "https://on.fiap.com.br/pluginfile.php/1/local_nanocourses/certificado_nanocourse/87355/467234a44b4c74f50b84d79d9f5095be/certificado.png",
     skills: ["CI/CD", "Pipelines", "Automação"],
   },
   {
@@ -159,6 +214,8 @@ const certifications = [
     institution: "Alura",
     category: "Programação",
     date: "mai de 2023",
+    image:
+      "https://cursos.alura.com.br/certificate/be369ed8-23ac-4a3d-81c1-7c9b9423ee8d",
     skills: ["JavaScript", "HTML", "Lógica"],
   },
   {
@@ -167,6 +224,8 @@ const certifications = [
     institution: "Alura",
     category: "Programação",
     date: "mai de 2023",
+    image:
+      "https://cursos.alura.com.br/certificate/5286eba3-fd0c-46a3-894a-7a7be18b2f37",
     skills: ["JavaScript", "Lógica", "Programação"],
   },
   {
@@ -174,6 +233,8 @@ const certifications = [
     institution: "Alura",
     category: "Programação",
     date: "mai de 2023",
+    image:
+      "https://cursos.alura.com.br/certificate/34e8ac0a-42ad-4533-81c0-e37fe6111c30",
     skills: ["Python", "Programação", "Backend"],
   },
   {
@@ -182,6 +243,8 @@ const certifications = [
     institution: "Alura",
     category: "Linux",
     date: "abr de 2023",
+    image:
+      "https://cursos.alura.com.br/certificate/ef51fa14-5b34-417a-a0fe-ac458fd2da94",
     skills: ["Linux", "Distribuições", "Fundamentos"],
   },
   {
@@ -189,6 +252,8 @@ const certifications = [
     institution: "FIAP",
     category: "Segurança",
     date: "abr de 2023",
+    image:
+      "https://on.fiap.com.br/pluginfile.php/1/local_nanocourses/certificado_nanocourse/83095/fdac96446a907ca479913a082e7b6cd3/certificado.png",
     skills: ["Hardening", "Servidores", "Segurança"],
   },
   {
@@ -196,6 +261,8 @@ const certifications = [
     institution: "Alura",
     category: "Linux",
     date: "abr de 2023",
+    image:
+      "https://cursos.alura.com.br/certificate/010a2830-6f55-475f-a6ef-6e3703d1fd66",
     skills: ["Linux", "Terminal", "CLI"],
   },
   {
@@ -203,20 +270,17 @@ const certifications = [
     institution: "Alura",
     category: "Linux",
     date: "mar de 2023",
+    image:
+      "https://cursos.alura.com.br/certificate/045fbddd-c77a-423c-b55b-2e3e318706c4",
     skills: ["Linux", "Processos", "Pacotes"],
-  },
-  {
-    title: "Lei Geral de Proteção de Dados (LGPD)",
-    institution: "Fundação Bradesco",
-    category: "Segurança",
-    date: "out de 2022",
-    skills: ["LGPD", "Privacidade", "Compliance"],
   },
   {
     title: "Estruturas de Computadores",
     institution: "FIAP",
     category: "Fundamentos",
     date: "set de 2022",
+    image:
+      "https://on.fiap.com.br/pluginfile.php/1/local_nanocourses/certificado_nanocourse/65025/b7bdd6e4a76f4b524d7c00bbdc2ce222/certificado.png",
     skills: ["Hardware", "Arquitetura", "Computadores"],
   },
   {
@@ -224,6 +288,8 @@ const certifications = [
     institution: "FIAP",
     category: "Programação",
     date: "ago de 2022",
+    image:
+      "https://on.fiap.com.br/pluginfile.php/1/local_nanocourses/certificado_nanocourse/62853/d94f580b5afcd7bcd9a15aedf69d880e/certificado.png",
     skills: ["Algoritmos", "Java", "Lógica"],
   },
   {
@@ -231,6 +297,8 @@ const certifications = [
     institution: "FIAP",
     category: "Fundamentos",
     date: "ago de 2022",
+    image:
+      "https://on.fiap.com.br/pluginfile.php/1/local_nanocourses/certificado_nanocourse/62453/3f6f10496f4683665c18b39c1067ce62/certificado.png",
     skills: ["Infraestrutura", "TI", "Gestão"],
   },
   {
@@ -238,6 +306,8 @@ const certifications = [
     institution: "FIAP",
     category: "Linux",
     date: "ago de 2022",
+    image:
+      "https://on.fiap.com.br/pluginfile.php/1/local_nanocourses/certificado_nanocourse/62067/5727da5de4b04bb52e8823519458f675/certificado.png",
     skills: ["Linux", "Fundamentos", "CLI"],
   },
   {
@@ -245,6 +315,8 @@ const certifications = [
     institution: "FIAP",
     category: "Programação",
     date: "ago de 2022",
+    image:
+      "https://on.fiap.com.br/pluginfile.php/1/local_nanocourses/certificado_nanocourse/61534/66420de2a304617f2193a710a3bd0a7e/certificado.png",
     skills: ["Python", "Automação", "POO"],
   },
   {
@@ -252,6 +324,8 @@ const certifications = [
     institution: "FIAP",
     category: "Fundamentos",
     date: "mar de 2022",
+    image:
+      "https://on.fiap.com.br/pluginfile.php/1/local_nanocourses/certificado_nanocourse/47361/43871aa363f1112fb169ddd13cabbc1b/certificado.png",
     skills: ["Sustentabilidade", "ESG", "Sociedade"],
   },
 ];
@@ -451,12 +525,20 @@ export function CertificationsSection() {
                       </div>
                     </div>
 
-                    <button
-                      onClick={() => setExpandedCert(null)}
-                      className="w-full py-4 bg-lorenzo-accent text-lorenzo-dark font-bold uppercase tracking-wider text-sm hover:bg-lorenzo-light hover:text-lorenzo-dark transition-all duration-300"
-                    >
-                      Fechar
-                    </button>
+                    <div className="flex gap-4 mb-6">
+                      <button
+                        onClick={() => window.open(cert.image, "_blank")}
+                        className="flex-1 py-4 bg-lorenzo-accent text-lorenzo-dark font-bold uppercase tracking-wider text-sm hover:bg-lorenzo-light hover:text-lorenzo-dark transition-all duration-300"
+                      >
+                        Ver Certificado
+                      </button>
+                      <button
+                        onClick={() => setExpandedCert(null)}
+                        className="flex-1 py-4 bg-lorenzo-light/5 text-lorenzo-light font-bold uppercase tracking-wider text-sm hover:bg-lorenzo-light/10 transition-all duration-300"
+                      >
+                        Fechar
+                      </button>
+                    </div>
                   </div>
                 );
               })()}
