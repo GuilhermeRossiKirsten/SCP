@@ -1,7 +1,7 @@
 ---
 date: 2025-05-20
 author: Guilherme Rossi Kirsten
-tags: [React, Next.js, Server Components, Client Components, Performance, SSR]
+tags: [React, Server Components, Client Components, Performance, SSR]
 ---
 
 # Server Components vs Client Components: Quando Usar Cada Um
