@@ -1,7 +1,14 @@
 ---
 date: 2026-01-10
 author: Guilherme Rossi Kirsten
-tags: [Arquitetura de Computadores, Sistemas Operacionais, Performance, C++]
+tags:
+  [
+    Arquitetura de Computadores,
+    Sistemas Operacionais,
+    Performance,
+    C++,
+    Gerenciamento de Memória,
+  ]
 ---
 
 # Memória física vs. virtual
@@ -85,3 +92,14 @@ Mesmo alocando um milhão de inteiros, o sistema pode não mapear toda a memóri
 - **Hierarquia de memória:** Registradores → Cache L1/L2/L3 → RAM → Disco (swap). Acessos mais rápidos nos níveis superiores.
 
 <!-- Fim das anotações -->
+
+### Tutoriais e Estudos
+
+- [Memory Management in Linux](https://www.tldp.org/LDP/tlk/mm/memory.html)
+- [Understanding the Linux Virtual Memory Manager](https://www.oreilly.com/library/view/understanding-the-linux/0596005652/)
+- [TLB, Paging, and Cache Visualization](https://www.geeksforgeeks.org/operating-systems/translation-lookaside-buffer-tlb-in-paging/)
+
+### Cheat Sheets
+
+- [Linux Memory Management Cheatsheet](https://docs.kernel.org/admin-guide/mm/index.html)
+- [C++ Memory Cheatsheet](https://www.cplusplus.com/doc/tutorial/dynamic/)
