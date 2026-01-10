@@ -139,6 +139,24 @@ export default function ArticlesPage() {
       </div>
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-24 md:py-32 relative z-10">
+        {/* Back to Home */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="text-center"
+        >
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-lorenzo-light/40 hover:text-lorenzo-accent transition-colors group"
+          >
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            <span className="font-bold uppercase tracking-wider text-sm">
+              Voltar para o início
+            </span>
+          </Link>
+        </motion.div>
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

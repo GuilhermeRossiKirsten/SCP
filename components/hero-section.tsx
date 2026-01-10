@@ -9,7 +9,7 @@ const roles = [
   "C++ Developer",
   "Security Enthusiast",
   "DevOps Engineer",
-  "Fullstack Dev",
+  "Software Engineer",
 ];
 
 export function HeroSection() {
@@ -81,7 +81,7 @@ export function HeroSection() {
             className="mb-8"
           >
             <span className="text-lorenzo-accent text-xs md:text-sm tracking-[0.3em] uppercase font-bold">
-              Desenvolvedor Fullstack & SecDevOps
+              Engenheiro de Software & SecDevOps
             </span>
           </motion.div>
 

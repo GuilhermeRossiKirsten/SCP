@@ -140,7 +140,7 @@ export function Header() {
               className="absolute bottom-8 left-0 right-0 px-6 md:px-12 flex justify-between items-center"
             >
               <span className="text-lorenzo-light/50 text-xs tracking-widest uppercase">
-                © 2025 GRK
+                © {new Date().getFullYear()} GRK
               </span>
               <span className="text-lorenzo-light/50 text-xs tracking-widest uppercase">
                 Dev / SecOps
