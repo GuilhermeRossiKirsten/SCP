@@ -954,16 +954,16 @@ void melhorOpcao() {
 
 ## Resumo dos Pontos-Chave
 
-1. **Arrays**: Tamanho fixo, índice começa em 0, sem verificação de limites
-2. **Vectors**: Tamanho dinâmico, métodos úteis, gerenciamento automático
-3. **data()**: Acessa array interno do vector para interop com C
-4. **Ponteiros**: Armazenam endereços de memória, use nullptr
-5. **&**: Operador de endereço (obtém endereço da variável)
-6. **\***: Operador de desreferenciação (obtém valor do ponteiro)
-7. **static_cast**: Conversão em compile-time, sem verificação
-8. **dynamic_cast**: Conversão em runtime, segura mas mais lenta
-9. **new/delete**: Gerenciamento manual de memória dinâmica
-10. **delete[]**: Sempre use para arrays alocados com new[]
+1. **Arrays** : Tamanho fixo, índice começa em 0, sem verificação de limites
+2. **Vectors** : Tamanho dinâmico, métodos úteis, gerenciamento automático
+3. **data()** : Acessa array interno do vector para interop com C
+4. **Ponteiros** : Armazenam endereços de memória, use nullptr
+5. **&** : Operador de endereço (obtém endereço da variável)
+6. **\*** : Operador de desreferenciação (obtém valor do ponteiro)
+7. **static_cast** : Conversão em compile-time, sem verificação
+8. **dynamic_cast** : Conversão em runtime, segura mas mais lenta
+9. **new/delete** : Gerenciamento manual de memória dinâmica
+10. **delete[ ]** : Sempre use para arrays alocados com new[ ]
 
 **Regras de Ouro**:
 

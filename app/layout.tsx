@@ -41,9 +41,9 @@ const libreBaskerville = Libre_Baskerville({
 });
 
 export const metadata: Metadata = {
-  title: "Guilherme Rossi Kirsten | Desenvolvedor Fullstack & SecDevOps",
+  title: "Guilherme Rossi Kirsten | Engenheiro de Software & SecDevOps",
   description:
-    "Portfólio de Guilherme Rossi Kirsten - Desenvolvedor Fullstack especializado em C++, Golang, React e Next.js com foco em segurança e DevOps.",
+    "Portfólio de Guilherme Rossi Kirsten - Engenheiro de Software especializado em C++, Golang, React e Next.js com foco em segurança e DevOps.",
   icons: {
     icon: "/favicon.png",
   },
