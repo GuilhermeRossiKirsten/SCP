@@ -44,6 +44,9 @@ export const metadata: Metadata = {
   title: "Guilherme Rossi Kirsten | Desenvolvedor Fullstack & SecDevOps",
   description:
     "Portfólio de Guilherme Rossi Kirsten - Desenvolvedor Fullstack especializado em C++, Golang, React e Next.js com foco em segurança e DevOps.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
