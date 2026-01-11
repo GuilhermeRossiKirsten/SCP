@@ -207,10 +207,10 @@ export function HeroSection() {
         </motion.div>
 
         {/* Decorative Lines */}
-        <div className="absolute top-0 left-12 w-px h-32 bg-gradient-to-b from-transparent via-lorenzo-accent/30 to-transparent" />
-        <div className="absolute top-0 right-12 w-px h-32 bg-gradient-to-b from-transparent via-lorenzo-accent/30 to-transparent" />
-        <div className="absolute bottom-0 left-1/4 w-px h-24 bg-gradient-to-t from-transparent via-lorenzo-accent/20 to-transparent" />
-        <div className="absolute bottom-0 right-1/4 w-px h-24 bg-gradient-to-t from-transparent via-lorenzo-accent/20 to-transparent" />
+        <div className="absolute top-0 left-12 w-px h-32 bg-linear-to-b from-transparent via-lorenzo-accent/30 to-transparent" />
+        <div className="absolute top-0 right-12 w-px h-32 bg-linear-to-b from-transparent via-lorenzo-accent/30 to-transparent" />
+        <div className="absolute bottom-0 left-1/4 w-px h-24 bg-linear-to-t from-transparent via-lorenzo-accent/20 to-transparent" />
+        <div className="absolute bottom-0 right-1/4 w-px h-24 bg-linear-to-t from-transparent via-lorenzo-accent/20 to-transparent" />
       </div>
 
       {/* Marquee Background (aparece com scroll)
