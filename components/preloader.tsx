@@ -22,7 +22,7 @@ export function Preloader({ onComplete, duration = 2500 }: PreloaderProps) {
         }
         return prev + 2;
       });
-    }, duration / 50);
+    }, duration / 55);
 
     // Timer para completar
     const timer = setTimeout(() => {
@@ -48,7 +48,7 @@ export function Preloader({ onComplete, duration = 2500 }: PreloaderProps) {
               ease: [0.76, 0, 0.24, 1],
             },
           }}
-          className="fixed inset-0 z-[9999] bg-[#0a0a0a] flex flex-col items-center justify-center overflow-hidden"
+          className="fixed inset-0 z-9999 bg-[#0a0a0a] flex flex-col items-center justify-center overflow-hidden"
         >
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-20">
@@ -108,7 +108,7 @@ export function Preloader({ onComplete, duration = 2500 }: PreloaderProps) {
             transition={{ delay: 0.3, duration: 0.5 }}
             className="absolute bottom-20 left-1/2 -translate-x-1/2"
           >
-            <div className="w-[200px] h-[2px] bg-lorenzo-light/10 overflow-hidden">
+            <div className="w-50 h-0.5 bg-lorenzo-light/10 overflow-hidden">
               <motion.div
                 initial={{ width: "0%" }}
                 animate={{ width: `${progress}%` }}
