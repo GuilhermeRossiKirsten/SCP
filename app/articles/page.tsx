@@ -100,7 +100,7 @@ export default function ArticlesPage() {
           />
         </div>
 
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-24 md:py-32 relative z-10">
+        <div className="max-w-350 mx-auto px-6 md:px-12 py-24 md:py-32 relative z-10">
           {/* Header */}
           <div className="mb-16">
             <span className="text-lorenzo-accent text-xs tracking-[0.3em] uppercase font-bold mb-4 block">
@@ -138,7 +138,7 @@ export default function ArticlesPage() {
         />
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-24 md:py-32 relative z-10">
+      <div className="max-w-350 mx-auto px-6 md:px-12 py-24 md:py-32 relative z-10">
         {/* Back to Home */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -309,7 +309,7 @@ export default function ArticlesPage() {
                     href={`/articles/${article.slug}`}
                     className="h-full block group"
                   >
-                    <article className="h-full min-h-[320px] bg-lorenzo-light/5 p-6 hover:bg-lorenzo-accent transition-all duration-300 flex flex-col">
+                    <article className="h-full min-h-80 bg-lorenzo-light/5 p-6 hover:bg-lorenzo-accent transition-all duration-300 flex flex-col">
                       {/* Metadata */}
                       <div className="flex flex-wrap items-center gap-3 mb-4">
                         {article.date && (
@@ -331,7 +331,7 @@ export default function ArticlesPage() {
                       </h2>
 
                       {/* Description */}
-                      <p className="text-sm text-lorenzo-light/50 leading-relaxed line-clamp-3 mb-4 flex-grow group-hover:text-lorenzo-dark transition-colors">
+                      <p className="text-sm text-lorenzo-light/50 leading-relaxed line-clamp-3 mb-4 grow group-hover:text-lorenzo-dark transition-colors">
                         {article.description}
                       </p>
 

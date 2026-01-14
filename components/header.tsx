@@ -7,14 +7,14 @@ import Link from "next/link";
 import ScrollProgressBar from "../app/articles/[slug]/ScrollProgressBar";
 
 const menuItems = [
-  { label: "Home", href: "#hero" },
-  { label: "Sobre", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projetos", href: "#projects" },
-  { label: "Experiência", href: "#experience" },
-  { label: "Certificações", href: "#certifications" },
+  { label: "Home", href: "/#hero" },
+  { label: "Sobre", href: "/#about" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Projetos", href: "/#projects" },
+  { label: "Experiência", href: "/#experience" },
+  { label: "Certificações", href: "/#certifications" },
   { label: "Artigos", href: "/articles" },
-  { label: "Contato", href: "#contact" },
+  { label: "Contato", href: "/#contact" },
 ];
 
 export function Header() {
@@ -65,7 +65,7 @@ export function Header() {
         }`}
       >
         <ScrollProgressBar />
-        <div className="max-w-[1920px] mx-auto px-6 md:px-12 flex items-center justify-between h-16 md:h-20">
+        <div className="max-w-480 mx-auto px-6 md:px-12 flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="relative z-10">
             <motion.span
